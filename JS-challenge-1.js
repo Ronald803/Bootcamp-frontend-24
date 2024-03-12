@@ -17,7 +17,7 @@ class Cinema {
         }
     }
     showSeatStatus(){
-        return this.allSeats
+        console.log(this.allSeats);
     }
     reservaSeat(row,seat){
         let index = this.allSeats.findIndex(s=>(s.rowPosition==row && s.seatPosition==seat))
@@ -31,3 +31,10 @@ class Cinema {
         }
     }
 }
+
+const cinema = new Cinema(5,10);
+
+cinema.showSeatStatus();
+cinema.reservaSeat(3,5);
+cinema.showSeatStatus();
+cinema.reservaSeat(3,5);
