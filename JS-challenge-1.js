@@ -27,10 +27,7 @@ class Cinema {
                 console.log("Seat reserved"); 
             } else {
                 console.log("Seat not available");
-            }
-            
+            } 
         }
-
     }
-
 }
