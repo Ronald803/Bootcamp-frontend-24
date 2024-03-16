@@ -1,6 +1,6 @@
 const findLeastFrequentItem = (itemsArray) => {
     let frequencyItems = {};
-    itemsArray.map(item=>{
+    itemsArray.forEach(item=>{                        // refactoring:  map replaced for forEach
         if(frequencyItems[item]){
             frequencyItems[item] = frequencyItems[item] + 1;
         } else {

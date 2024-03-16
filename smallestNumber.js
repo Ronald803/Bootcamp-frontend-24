@@ -1,6 +1,6 @@
 const findSmallestNumber = (numbersArray) => {
     let minorNumber = numbersArray[0]
-    numbersArray.map(singleNumber=>{
+    numbersArray.forEach(singleNumber=>{                      // refactoring:  map replaced for forEach
         if(singleNumber<minorNumber){
             minorNumber = singleNumber
         }
