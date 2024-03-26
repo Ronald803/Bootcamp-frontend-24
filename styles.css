@@ -1,15 +1,48 @@
+body, html {
+    height: 90%;
+    width: 80%;
+}
 .content {
     display: flex;
+    height: 100%;
+}
+
+.column {
+    flex-grow: 1;
+    display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    flex-flow: row wrap;
-    align-items: stretch;
+    margin: 0.5rem;
 }
-  
-.box {
-  flex-grow: 1;
-}
-  
-.box1 {
+
+.boxA {
   flex-grow: 2;
+  margin: 0.8rem;
+}
+  
+.boxB {
+  flex-grow: 1;
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem ;
+}
+
+.boxC {
+  flex-grow:7;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.boxD {
+  flex-grow: 3;
+  margin: 0.8rem;
+}
+
+.boxD1{
+  flex-grow:5;
+  margin-bottom: 5px;
+}
+
+.boxD2{
+  flex-grow:2;
+  margin-top: 10px;
 }

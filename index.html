@@ -8,13 +8,23 @@
     <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
-    <div class="content">
-        <div class="box" style="background-color:red;">A</div>
-        <div class="box" style="background-color:lightblue;">B</div>
-        <div class="box1" style="background-color:yellow;">C</div>
-        <div class="box1" style="background-color:brown;">
-            <div>D1</div>
-            <div>D2</div>
+    <div class="content" style="background-color:blue;">
+        <div class="column">
+            <div class="boxA">
+                <div style="background-color: red;height: 100%;">A</div>
+            </div>
+            <div class="boxB">
+                <div style="background-color:lightblue;height: 100%;">B</div>
+            </div>
+            <div class="boxC" style="background-color:yellow;">C</div>
+            <div class="boxD" style="background-color:brown;">
+                <div class="content">
+                    <div class="column">
+                        <div class="boxD1" style="background-color: aqua;">D1</div>
+                        <div class="boxD2" style="background-color:chartreuse;">D2</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
