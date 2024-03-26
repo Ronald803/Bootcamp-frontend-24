@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+  
+.box {
+  flex-grow: 1;
+}
+  
+.box1 {
+  flex-grow: 2;
+}
