@@ -1,0 +1,22 @@
+.board_container{
+    background-color: red;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.first-block{
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.second-block{
+    background-color: brown;
+}
+
+.third-block{
+    background-color: darkorange;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
