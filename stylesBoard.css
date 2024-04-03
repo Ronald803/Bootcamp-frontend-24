@@ -1,68 +1,59 @@
 .main-container{
-    height: 600px;
-}
-.board_container{
-    height: 100%;
-    display: grid;
-    grid-template-columns: 2fr 5fr 2fr;
-    grid-template-rows: 1fr;
+  height: 600px;
 }
 
-.first-block{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.board-container{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr;
+  grid-template-rows: 1fr;
 }
-.first-block-first-column{
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+.lateral-block{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
+
 .boxA{
-    grid-row-start: 3;
-    background-color: blue;
+  grid-row-start: 3;
+  background-color: blue;
 }
-.first-block-second-column{
-    background-color: chartreuse;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+.lateral-column{
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
+
 .second-block{
-    display: grid;
-    grid-template-rows: 1fr 4fr 2fr 4fr 1fr;
+  display: grid;
+  grid-template-rows: 1fr 4fr 2fr 4fr 1fr;
 }
+
 .second-block-up{
-    background-color: aqua;
-    grid-row-start: 2;
-    grid-row-end: 3;
+  background-color: aqua;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
+
 .second-block-down{
-    background-color: blueviolet;
-    grid-row-start: 4;
-    grid-row-end: 5;
+  background-color: blueviolet;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
+
 .fiveCol-twoRows{
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
-.third-block{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.third-block-first-column{
-    background-color: darkgreen;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-.third-block-second-column{
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
+
 .boxD{
-    grid-row-start: 4;
-    background-color: blue;
+  grid-row-start: 4;
+  background-color: blue;
 }
+
 .little-box{
-    border: solid;
-    margin: 1px
+  border: solid;
+  margin: 1px
 }
