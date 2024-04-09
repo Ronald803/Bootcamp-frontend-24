@@ -1,7 +1,7 @@
 let PI: number;
 let age: number;
 let PersonName: string;
-let maybe: any;
+let maybe: number | string;
 let rol: 'Admin' | 'User';
 let base_experience: number | undefined;
 
@@ -13,57 +13,70 @@ age = 24
 maybe = 'something else';
 rol = 'Admin';
 
+// I use "export" because I have conflicts with the other file that has a class with the same name
 export class Person {
     constructor(public name:string,public age:number,public rol:'Admin'|'User' ){}
 }
 
 const person = new Person(PersonName,age,rol)
 
-const pikachu: any = {
-    id: 25,
-    name: 'pikachu',
-    height:4,
-    weight: 60,
-    base_experience: base_experience, // this can be optional value
-    types: [
+class Move {
+    constructor(public name:string,public url:string){}
+}
+class Sprites{
+    constructor(
+        public back_default: string,
+        public back_female: string,
+        public back_shiny: string,
+        public back_shiny_female: string,
+        public front_default: string,
+        public front_female: string,
+        public front_shiny: string,
+        public front_shiny_female: string
+    ){}
+}
+class Pokemon {
+    constructor(
+        public id:number,
+        public name:string,
+        public height:number,
+        public weight:number,
+        public base_experience:number|undefined,
+        public types: Array<{slot:number,type:{name:string,url:string}}>,
+        public moves: Move[],
+        public sprites: Sprites
+        ){}
+}
+const pikachu = new Pokemon(
+    25,
+    'pikachu',
+    4,
+    60,
+    base_experience,
+    [
         {
-            slot: 1,
-            type: {
+            slot:1,
+            type:{
                 name:"electric",
-                url:"https://pokeapi.co/api/v2/type/13/"
-            },
+                url: "https://pokeapi.co/api/v2/type/13/"
+            }
         }
     ],
-    moves: [
-        {
-            move: {
-                name: "thunderbolt",
-                url: "https://pokeapi.co/api/v2/move/85/"
-            },
-        },
-        {
-            move: {
-                name: "thunder",
-                url: "https://pokeapi.co/api/v2/move/87/",
-            },
-        },
-        {
-            move: {
-                name: "iron-tail",
-                url: "https://pokeapi.co/api/v2/move/231/"
-            },
-        },
+    [
+        new Move('thunderbolt','https://pokeapi.co/api/v2/move/85/'),
+        new Move('thunder','https://pokeapi.co/api/v2/move/87/'),
+        new Move('iron-tail','https://pokeapi.co/api/v2/move/231/')
     ],
-    sprites: {
-        back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png",
-        back_female: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/25.png",
-        back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/25.png",
-        back_shiny_female: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/25.png",
-        front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-        front_female: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/25.png",
-        front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
-        front_shiny_female: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/25.png",
-    }
-}
+    new Sprites(
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/25.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/25.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/25.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/25.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/25.png"
+    )
+    )
 
 console.log(person);

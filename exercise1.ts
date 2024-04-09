@@ -31,7 +31,7 @@ interface Admin {
 }
 
 class Person implements User{
-    constructor(public name,public age,public occupation){}
+    constructor(public name:string,public age:number,public occupation:string){}
 }
 
 const persons: Person[] /* <- Person[] */ = [
