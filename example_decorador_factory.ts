@@ -1,7 +1,6 @@
 function logWithPrefix(prefix: string) {
-    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    return function(target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
         const originalMethod = descriptor.value;
- 
         descriptor.value = function(...args: any[]) {
             console.log(`${prefix}: ${propertyKey} with arguments: ${JSON.stringify(args)}`);
             const result = originalMethod.apply(this, args);
@@ -12,6 +11,21 @@ function logWithPrefix(prefix: string) {
         return descriptor;
     };
 }
+function WithTax(rate: number) {
+  return function (
+    target: Object,
+    key: string | symbol,
+    descriptor: PropertyDescriptor
+  ) {
+    const original = descriptor.value;
+ 
+    descriptor.value = function (...args: any[]) {
+      const result = original.apply(this, args);
+      return (result * (1 + rate)).toFixed(2);
+    };
+    return descriptor;
+  };
+}
  
 class Calculator {
     @logWithPrefix("SUM")
@@ -20,6 +34,7 @@ class Calculator {
     }
  
     @logWithPrefix("SUBTRACT")
+    @WithTax(0.5)
     subtract(x: number, y: number): number {
         return x - y;
     }
