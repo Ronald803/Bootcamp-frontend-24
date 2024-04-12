@@ -1,3 +1,16 @@
+function checkPowerPoint() {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+      const originalMethod = descriptor.value;
+      descriptor.value = function (...args: any[]) {
+        if (this.ppAvailable > 0) {
+          originalMethod.apply(this, args);
+        } else {
+          console.log(`${this.name} cannot attack, ${this.name} has no power points left!`);
+        }
+      };
+      return descriptor;
+    };
+  }
 class Pokemon {
     name: string;
     ppAvailable = 1;
@@ -6,7 +19,7 @@ class Pokemon {
       this.ppAvailable = ppAvailable;
     }
     
-    //@checkPowerPoint()
+    @checkPowerPoint()
     figth(move: any) {
       console.log(`${this.name} used ${move?.name}!`);
       this.ppAvailable -= 1;
