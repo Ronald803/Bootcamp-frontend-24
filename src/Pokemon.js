@@ -51,7 +51,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PokemonTrainer = exports.Pokemon = exports.getSinglePokemon = void 0;
+exports.PokemonTrainer = exports.Pokemon = exports.getInfoMove = exports.getSinglePokemon = void 0;
 var axios_1 = require("axios");
 /*
 
@@ -70,6 +70,10 @@ function getSinglePokemon(id) {
     return axios_1.default.get("https://pokeapi.co/api/v2/pokemon/".concat(id));
 }
 exports.getSinglePokemon = getSinglePokemon;
+function getInfoMove(url) {
+    return axios_1.default.get(url);
+}
+exports.getInfoMove = getInfoMove;
 function getNewPokemons(constructor) {
     return /** @class */ (function (_super) {
         __extends(class_1, _super);
@@ -83,30 +87,46 @@ function getNewPokemons(constructor) {
 }
 var Pokemon = /** @class */ (function () {
     function Pokemon(pokemonResult) {
+        var _this = this;
         this.name = '';
         this.id = 0;
         this.moves = [];
         this.types = [];
-        this.buildFieldsPokemon(pokemonResult);
+        this.buildFieldsPokemon(pokemonResult).then(function () {
+            _this.displayInfo();
+        });
     }
     Pokemon.prototype.buildFieldsPokemon = function (pokemon) {
-        var _this = this;
-        this.name = pokemon.name;
-        this.id = pokemon.id;
-        pokemon.types.forEach(function (type) {
-            _this.types.push(type.type);
+        return __awaiter(this, void 0, void 0, function () {
+            var chosenMoves;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.name = pokemon.name;
+                        this.id = pokemon.id;
+                        pokemon.types.forEach(function (type) {
+                            _this.types.push(type.type);
+                        });
+                        return [4 /*yield*/, chooseFourAleatory(pokemon.moves)];
+                    case 1:
+                        chosenMoves = _a.sent();
+                        this.moves = chosenMoves;
+                        return [2 /*return*/];
+                }
+            });
         });
-        var randomMoves = chooseFourAleatory(pokemon.moves);
-        this.moves = randomMoves;
     };
     Pokemon.prototype.displayInfo = function () {
         console.log("==========================");
         console.log("".concat(this.id, " ").concat(this.name));
+        console.log('Type(s):');
         this.types.forEach(function (type) {
-            console.log("".concat(type.name));
+            console.log("\t".concat(type.name));
         });
+        console.log('Moves:');
         this.moves.forEach(function (move) {
-            console.log("".concat(move.name));
+            console.log("\t".concat(move.name));
         });
     };
     return Pokemon;
@@ -141,13 +161,11 @@ var PokemonTrainer = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPokemons()];
+                    case 0:
+                        console.log('Trainer:', this.name);
+                        return [4 /*yield*/, this.getPokemons()];
                     case 1:
                         _a.sent();
-                        console.log('Trainer:', this.name);
-                        this.pokemons.forEach(function (pokemon) {
-                            pokemon.displayInfo();
-                        });
                         return [2 /*return*/];
                 }
             });
@@ -156,12 +174,34 @@ var PokemonTrainer = /** @class */ (function () {
     return PokemonTrainer;
 }());
 exports.PokemonTrainer = PokemonTrainer;
-var chooseFourAleatory = function (arr) {
-    var choosen = [];
-    for (var i = 0; i < 4; i++) {
-        var randomPosition = Math.floor(Math.random() * arr.length);
-        choosen.push({ name: arr[randomPosition].move.name, url: arr[randomPosition].move.url });
-        arr.splice(randomPosition, 1);
-    }
-    return choosen;
-};
+var chooseFourAleatory = function (arr) { return __awaiter(void 0, void 0, void 0, function () {
+    var choosen, i, randomPosition, answer;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                choosen = [];
+                i = 0;
+                _a.label = 1;
+            case 1:
+                if (!(i < 4)) return [3 /*break*/, 4];
+                randomPosition = Math.floor(Math.random() * arr.length);
+                return [4 /*yield*/, getInfoMove(arr[randomPosition].move.url)];
+            case 2:
+                answer = _a.sent();
+                choosen.push({
+                    name: arr[randomPosition].move.name,
+                    url: arr[randomPosition].move.url,
+                    accuracy: answer.data.accuracy,
+                    type: answer.data.type.name,
+                    damage: answer.data.power,
+                    powerPoints: answer.data.pp,
+                });
+                arr.splice(randomPosition, 1);
+                _a.label = 3;
+            case 3:
+                i++;
+                return [3 /*break*/, 1];
+            case 4: return [2 /*return*/, choosen];
+        }
+    });
+}); };

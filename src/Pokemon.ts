@@ -15,6 +15,9 @@ List of goals:
 export function getSinglePokemon(id: string | number) {
   return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 }
+export function getInfoMove(url:string){
+  return axios.get(url)
+}
 
 function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
   return class extends constructor {
@@ -43,27 +46,31 @@ export class Pokemon {
   types: Type[] = [];
 
   constructor(pokemonResult: any) {
-    this.buildFieldsPokemon(pokemonResult);
+    this.buildFieldsPokemon(pokemonResult).then(()=>{
+      this.displayInfo();
+    });
   }
 
-  buildFieldsPokemon(pokemon: any) {
+  async buildFieldsPokemon(pokemon: any) {
     this.name = pokemon.name;
     this.id = pokemon.id;
     pokemon.types.forEach(type=>{
       this.types.push(type.type)
     })
-    let randomMoves = chooseFourAleatory(pokemon.moves)
-    this.moves = randomMoves
+    const chosenMoves = await chooseFourAleatory(pokemon.moves);
+    this.moves = chosenMoves;
   }
 
   displayInfo() {
     console.log(`==========================`);
     console.log(`${this.id} ${this.name}`);
+    console.log('Type(s):')
     this.types.forEach(type => {
-      console.log(`${type.name}`);
+      console.log(`\t${type.name}`);
     });
+    console.log('Moves:');
     this.moves.forEach(move => {
-      console.log(`${move.name}`);
+      console.log(`\t${move.name}`);
     });
   }
 }
@@ -85,19 +92,25 @@ export class PokemonTrainer {
   }
 
   async showTeam() {
-    await this.getPokemons();
     console.log('Trainer:', this.name);
-    this.pokemons.forEach(pokemon => {
-      pokemon.displayInfo();
-    });
+    await this.getPokemons();
   }
 }
 
-const chooseFourAleatory = (arr) => {
-  let choosen = []
+const chooseFourAleatory = async (arr) => {
+  let choosen: Move[]= []
   for (let i = 0; i < 4; i++) {
     let randomPosition = Math.floor(Math.random()*arr.length);
-    choosen.push({name: arr[randomPosition].move.name, url: arr[randomPosition].move.url})
+    let answer = await getInfoMove(arr[randomPosition].move.url)
+    choosen.push(
+      {
+        name: arr[randomPosition].move.name, 
+        url: arr[randomPosition].move.url,
+        accuracy: answer.data.accuracy,
+        type: answer.data.type.name,
+        damage: answer.data.power,
+        powerPoints: answer.data.pp,
+      })
     arr.splice(randomPosition,1)
   }
   return choosen
