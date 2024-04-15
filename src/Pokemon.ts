@@ -19,9 +19,15 @@ export function getInfoMove(url:string){
   return axios.get(url)
 }
 
-function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
+interface PokemonTrainerProps {
+  listOfIds: number[]
+}
+function getNewPokemons<T extends { new(...args: any[]): PokemonTrainerProps }>(constructor: T) {
   return class extends constructor {
-    listOfIds = [1,2,3];
+    constructor(...args:any[]){
+      super(...args);
+      this.listOfIds = [1,2,3];
+    }
   }
 }
 
@@ -75,6 +81,7 @@ export class Pokemon {
   }
 }
 
+@getNewPokemons
 export class PokemonTrainer {
   name: string;
   pokemons: Pokemon[] = [];
