@@ -15,4 +15,4 @@ const findLeastFrequentItem = (itemsArray) => {
 }
 
 let leastFrequentItem = findLeastFrequentItem([3,'c','c','a',2,3,'c',3,'c',2,4,9,9])
-console.log(leastFrequentItem);  // imprime 4
+console.log(leastFrequentItem);
