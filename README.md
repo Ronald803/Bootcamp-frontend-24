@@ -59,3 +59,5 @@ if(frequencyItems[item]){
 // ---------------- Now ---------------------
 frequencyItems[item] = (frequencyItems[item] || 0) + 1;
 ```
+# Smallest Number
+  1. Tab size changed to 2, as a recommendation of the trainer in a past class of Frontend
