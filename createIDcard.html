@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles.css"/>
 </head>
 <template id="custom-element-template">
-    <div style="width: 380px; border-style: solid ;border-color: black;">
-        <div style="text-align: center;">
-            <img src="./jalasoft_logo.png" style="width: 360px;"/>
-        </div>
-        <div style="background-color: black; margin: 0;">
-            <div>
-                <div style="text-align: center;">
-                    <img src="./profile_picture.jpg" style="width: 280px;padding-top: 40px; padding-bottom: 20px;border-radius: 20%;"/>
-                </div>                    
-            </div>
-            <div>
-                <h1 style="text-align: center; color: white;margin: 0;padding-bottom: 20px;">Ronald Blanco</h1>
-            </div>
-        </div>
-        <div style="background-color: red; ">
-            <h1 style="margin:0;text-align: center; color: white;padding-top: 8px;padding-bottom: 8px;">Developer</h1>
-        </div>
+  <link rel="stylesheet" href="./styles.css"/>
+  <div class="template-container">
+    <div class="center">
+      <img src="./jalasoft_logo.png" class="logo-jala"/>
     </div>
+    <div class="template-container-body">
+      <div>
+        <div class="center">
+          <img src="./profile_picture.jpg" class="template-container-body-profile-picture"/>
+        </div>                    
+      </div>
+      <div>
+          <h1 class="template-container-body-name">Ronald Blanco</h1>
+      </div>
+    </div>
+    <div class="background-red">
+      <h1 class="template-container-body-job">Developer</h1>
+    </div>
+  </div>
 </template>
 <script>
-    class CardID extends HTMLElement {
-        constructor(){
-            super();
-            const shadowRoot = this.attachShadow({mode: 'open'});
-            const template = document.getElementById('custom-element-template');
-            const instance = template.content.cloneNode(true);
-            shadowRoot.appendChild(instance);
-        }
+  class CardID extends HTMLElement {
+    constructor(){
+      super();
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      const template = document.getElementById('custom-element-template');
+      const instance = template.content.cloneNode(true);
+      shadowRoot.appendChild(instance);
     }
-    customElements.define('card-id',CardID)
+  }
+  customElements.define('card-id',CardID)
 </script>
 <body>
-    <card-id/>
+  <card-id/>
 </body>
 </html>

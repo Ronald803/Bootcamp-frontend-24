@@ -1,0 +1,44 @@
+.template-container {
+  width: 380px;
+  border-style: solid;
+  border-color: black;
+}
+
+.center {
+	text-align: center;
+}
+
+.logo-jala {
+	width: 360px;
+}
+
+.template-container-body {
+	background-color: black; 
+	margin: 0;
+}
+
+.template-container-body-profile-picture {
+	width: 280px;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	border-radius: 20%;
+}
+
+.template-container-body-name {
+	text-align: center;
+	color: white;
+	margin: 0;
+	padding-bottom: 20px;
+}
+
+.template-container-body-job {
+	margin:0;
+	text-align: center;
+	color: white;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.background-red {
+	background-color: red;
+}
