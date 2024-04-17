@@ -106,7 +106,9 @@ export class PokemonTrainer {
 
 const chooseFourAleatory = async (arr) => {
   let choosen: Move[]= []
-  for (let i = 0; i < 4; i++) {
+  let lengthNewArr = arr.length
+  if(lengthNewArr>4){lengthNewArr=4}
+  for (let i = 0; i < lengthNewArr; i++) {
     let randomPosition = Math.floor(Math.random()*arr.length);
     let answer = await getInfoMove(arr[randomPosition].move.url)
     choosen.push(

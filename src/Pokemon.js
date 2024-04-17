@@ -192,15 +192,19 @@ var PokemonTrainer = /** @class */ (function () {
 }());
 exports.PokemonTrainer = PokemonTrainer;
 var chooseFourAleatory = function (arr) { return __awaiter(void 0, void 0, void 0, function () {
-    var choosen, i, randomPosition, answer;
+    var choosen, lengthNewArr, i, randomPosition, answer;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 choosen = [];
+                lengthNewArr = arr.length;
+                if (lengthNewArr > 4) {
+                    lengthNewArr = 4;
+                }
                 i = 0;
                 _a.label = 1;
             case 1:
-                if (!(i < 4)) return [3 /*break*/, 4];
+                if (!(i < lengthNewArr)) return [3 /*break*/, 4];
                 randomPosition = Math.floor(Math.random() * arr.length);
                 return [4 /*yield*/, getInfoMove(arr[randomPosition].move.url)];
             case 2:
