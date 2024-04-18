@@ -20,4 +20,17 @@
     ```
     npm cache ls [<name>@<version>]
     ```
+## Where is "npm cache"?
 
+The exact location of the "npm cache" folder depends on the operating system being used.
+
+- Linux y macOS: it is located in the "~/.npm" directory within the user's home directory
+- Windows: the default npm cache location is "%AppData%\npm-cache"
+
+These default locations can change by using the npm_config_cache environment variable
+
+## What is "npm registry"?
+
+- The "npm registry" is a centralized repository that stores all open source and private software packages available to the Node.js and JavaScript developer community.
+
+- "npm registry" also provides additional features such as version management, dependency resolution, and user authentication for private packages.
