@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "preinstall": "check-yarn",
-    "check-yarn": "if which yarn; then echo 'Yarn is not allowed on this project, use NPM'; exit 1; fi"
+    "preinstall": "if which yarn; then echo 'Yarn is not allowed on this project, use NPM'; exit 1; fi"
   },
   "keywords": [],
   "author": "",

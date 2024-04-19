@@ -50,3 +50,21 @@ Then I retried to run "yarn add lodash" to see if my prescripts works well, but 
 ### Conclusion
 
 I will continue searching information to fix this problem. However, although the prescript does not work in the correct way, it was possible to prevent packages from being installed with yarn
+
+# Fixing bug ✔️✔️✔️✔️✔️
+
+Using directly the script "check yarn" in the "preinstall" script works succesfully
+```
+{
+  "name": "bootcamp-frontend-24",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "if which yarn; then echo 'Yarn is not allowed on this project, use NPM'; exit 1; fi"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
