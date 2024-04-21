@@ -1,70 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./stylesBoard.css"/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./stylesBoard.css"/>
 </head>
-<body class="main-container">
-    <div class="board-container">
-        <div class="lateral-block">
-            <div class="lateral-column">
-                <div class="boxA little-box">a</div>
+<template id="custom-element-template">
+  <link rel="stylesheet" href="./styles.css"/>
+  <div class="content" >
+    <div class="column">
+      <div class="boxA">
+        <h1 class="name">
+          MAGO OSCURO
+        </h1>
+      </div>
+      <div class="boxB">
+        <h3 class="stars">⭐⭐⭐⭐⭐⭐⭐</h3>
+      </div>
+      <div class="boxC">
+        <img class="imagen" src="./mago.png"/>
+      </div>
+      <div class="boxD">
+        <div class="boxDContainer">
+          <div class="column" style="background-color: antiquewhite;">
+            <div class="boxD1">
+              <p class="description">[Lanzador de conjuros]</p>
+              <p class="description">El más grande de los magos en relaciòn con el ataque y la defensa</p>
             </div>
-            <div class="lateral-column">
-                <div class="little-box">b1</div>
-                <div class="little-box">b2</div>
-                <div class="little-box">b3</div>
-                <div class="little-box">b4</div>
-                <div class="little-box">b5</div>
-                <div class="little-box">b6</div>
+            <div class="boxD2">
+              <p class="description">ATK/2500 DEF/2100</p>
             </div>
+          </div>
         </div>
-        <div class="second-block">
-            <div class="second-block-up">
-                <div class="fiveCol-twoRows">
-                    <div class="little-box">C11</div>
-                    <div class="little-box">C12</div>
-                    <div class="little-box">C13</div>
-                    <div class="little-box">C14</div>
-                    <div class="little-box">C15</div>
-                    <div class="little-box">C16</div>
-                    <div class="little-box">C17</div>
-                    <div class="little-box">C18</div>
-                    <div class="little-box">C19</div>
-                    <div class="little-box">C20</div>
-                </div>
-            </div>
-            <div class="second-block-down">
-                <div class="fiveCol-twoRows">
-                    <div class="little-box">C21</div>
-                    <div class="little-box">C22</div>
-                    <div class="little-box">C23</div>
-                    <div class="little-box">C24</div>
-                    <div class="little-box">C25</div>
-                    <div class="little-box">C26</div>
-                    <div class="little-box">C27</div>
-                    <div class="little-box">C28</div>
-                    <div class="little-box">C29</div>
-                    <div class="little-box">C30</div>
-                </div>
-            </div>
-        </div>
-        <div class="lateral-block">
-            <div class="lateral-column">
-                <div class="little-box">D1</div>
-                <div class="little-box">D2</div>
-                <div class="little-box">D3</div>
-                <div class="little-box">D4</div>
-                <div class="little-box">D5</div>
-                <div class="little-box">D6</div>
-            </div>
-            <div class="lateral-column">
-                <div class="boxD little-box">D</div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+</template>
+<script>
+  class CardID extends HTMLElement {
+    constructor(){
+      super();
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      const template = document.getElementById('custom-element-template');
+      const instance = template.content.cloneNode(true);
+      shadowRoot.appendChild(instance);
+    }
+  }
+  customElements.define('card-id',CardID)
+</script>
+<body class="main-container">
+  <div class="board-container">
+    <div class="lateral-block">
+      <div class="lateral-column">
+        <div class="boxA little-box">a</div>
+      </div>
+      <div class="lateral-column">
+        <div class="little-box"><card-id/></div>
+        <div class="little-box">b2</div>
+        <div class="little-box">b3</div>
+        <div class="little-box">b4</div>
+        <div class="little-box"><card-id/></div>
+        <div class="little-box">b6</div>
+      </div>
+    </div>
+    <div class="second-block">
+      <div class="second-block-up">
+        <div class="fiveCol-twoRows">
+          <div class="little-box">C11</div>
+          <div class="little-box">C12</div>
+          <div class="little-box"><card-id/></div>
+          <div class="little-box">C14</div>
+          <div class="little-box">C15</div>
+          <div class="little-box">C16</div>
+          <div class="little-box">C17</div>
+          <div class="little-box">C18</div>
+          <div class="little-box"><card-id/></div>
+          <div class="little-box">C20</div>
+        </div>
+      </div>
+      <div class="second-block-down">
+        <div class="fiveCol-twoRows">
+          <div class="little-box">C21</div>
+          <div class="little-box">C22</div>
+          <div class="little-box">C23</div>
+          <div class="little-box">C24</div>
+          <div class="little-box">C25</div>
+          <div class="little-box">C26</div>
+          <div class="little-box">C27</div>
+          <div class="little-box">C28</div>
+          <div class="little-box">C29</div>
+          <div class="little-box">C30</div>
+        </div>
+      </div>
+    </div>
+    <div class="lateral-block">
+      <div class="lateral-column">
+        <div class="little-box">D1</div>
+        <div class="little-box">D2</div>
+        <div class="little-box">D3</div>
+        <div class="little-box">D4</div>
+        <div class="little-box">D5</div>
+        <div class="little-box">D6</div>
+      </div>
+      <div class="lateral-column">
+        <div class="boxD little-box"><card-id/></div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
