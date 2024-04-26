@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Row from './components/Row';
 
 function App() {
   class Seat {
@@ -41,16 +42,13 @@ function App() {
       }
     }
   }
-  
-  const cinema = new Cinema(5,10);
+  const cinema1 = new Cinema(2,3);
   return (
     <div>
-      {cinema.allSeats.map((newArr,i)=>{
-        newArr.map((seat,j)=>{
-          return(
-            <div></div>
-          )
-        })
+      {cinema1.allSeats.map((row,i)=>{
+        return (
+          <Row seats={row} key={i} cinema={cinema1} rowNumber={i}/>
+        )
       })}
     </div>
   )
