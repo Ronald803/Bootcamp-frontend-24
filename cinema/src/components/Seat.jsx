@@ -9,7 +9,6 @@ function Seat(props) {
     // }
     const [imgSrc, setImgSrc] = useState('../src/assets/seat.png')
     const seatClick = ()=>{
-        props.cinema.showSeatStatus()
         props.cinema.reservaSeat(props.rowNumber,props.colNumber)
         if(!props.seat.availability){
             setImgSrc('../src/assets/seatReserved.png')

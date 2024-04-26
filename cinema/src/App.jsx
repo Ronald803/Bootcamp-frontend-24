@@ -42,6 +42,7 @@ function App() {
   const cinema1 = new Cinema(4,6);
   return (
     <div>
+      <h2 className='screen'>SCREEN</h2>
       {cinema1.allSeats.map((row,i)=>{
         return (
           <Row seats={row} key={i} cinema={cinema1} rowNumber={i}/>
