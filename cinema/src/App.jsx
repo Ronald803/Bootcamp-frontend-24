@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Row from './components/Row';
 
@@ -42,7 +39,7 @@ function App() {
       }
     }
   }
-  const cinema1 = new Cinema(2,3);
+  const cinema1 = new Cinema(4,6);
   return (
     <div>
       {cinema1.allSeats.map((row,i)=>{
