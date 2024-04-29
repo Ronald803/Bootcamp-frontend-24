@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../src/myStyles.css'
 
 function Mybutton() {
+  const [clicked, setClicked] = useState(0)
+  function handleClick(){
+    setClicked(clicked + 1)
+  }
   return (
-    <button className='avatar'>I'm a button</button>
+    <>
+      <p>clicked {clicked} times!</p>
+      <button className='avatar' onClick={handleClick}>
+        Click me
+      </button>
+    </>
   )
 }
 
