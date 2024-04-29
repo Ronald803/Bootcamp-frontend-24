@@ -4,7 +4,9 @@ import '../src/myStyles.css'
 function Mybutton() {
   const [clicked, setClicked] = useState(0)
   function handleClick(){
-    setClicked(clicked + 1)
+    setClicked((clicked) => clicked + 1)
+    setClicked((clicked) => clicked + 1)
+    setClicked((clicked) => clicked + 1)
   }
   return (
     <>
