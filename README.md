@@ -21,9 +21,10 @@
 - Useful mode to set manually without any default optimization
 
 # Configure dev, prod, common mode, and create npm scripts for dev and prod mode
-
+```json
 "scripts": {
   "build:dev": "webpack --mode development",
   "build:prod": "webpack --mode production",
   "build:custom": "webpack --mode none"
 }
+```
