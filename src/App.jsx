@@ -55,7 +55,9 @@ function WeatherDashboard() {
   }
   const search = (city) => {
     setCurrentCity(mockWeatherData[city])
-    setHistory([...history,city])
+    if(history.indexOf(city)==-1){
+      setHistory([...history,city])
+    }
     setDoesCityExist(true)
   }
   return (
