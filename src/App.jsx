@@ -45,12 +45,14 @@ function HistoryButton(props) {
 function WeatherDashboard() {
   const inputCityRef = useRef(null)
   const [currentCity, setCurrentCity] = useState({})
-  const history = Object.keys(mockWeatherData);
+  const [history, setHistory] = useState([])
+  //const history = Object.keys(mockWeatherData);
   const handleSearch = (e) => {
     e.preventDefault();
     if(mockWeatherData[inputCityRef.current.value]){
       console.log(mockWeatherData[inputCityRef.current.value]);
       setCurrentCity(mockWeatherData[inputCityRef.current.value])
+      setHistory([...history,inputCityRef.current.value])
     }
   }
   return (
