@@ -35,25 +35,28 @@ const mockWeatherData = {
  },
 };
 
-
 function HistoryButton(props) {
- const {city} = props;
- return (<button key={city} id="cityButton">{city}</button>);
-}
-
+  const {city} = props;
+  return (<button key={city} id="cityButton" onClick={()=>props.act(city)}>{city}</button>);
+ }
 
 function WeatherDashboard() {
   const inputCityRef = useRef(null)
   const [currentCity, setCurrentCity] = useState({})
   const [history, setHistory] = useState([])
-  //const history = Object.keys(mockWeatherData);
+  const [doesCityExist, setDoesCityExist] = useState(false)
   const handleSearch = (e) => {
     e.preventDefault();
     if(mockWeatherData[inputCityRef.current.value]){
-      console.log(mockWeatherData[inputCityRef.current.value]);
-      setCurrentCity(mockWeatherData[inputCityRef.current.value])
-      setHistory([...history,inputCityRef.current.value])
+      search(inputCityRef.current.value)
+    } else {
+      setDoesCityExist(false)
     }
+  }
+  const search = (city) => {
+    setCurrentCity(mockWeatherData[city])
+    setHistory([...history,city])
+    setDoesCityExist(true)
   }
   return (
    <div>
@@ -61,14 +64,23 @@ function WeatherDashboard() {
      <button id="searchButton" onClick={handleSearch}>Search</button>
      <div id="previousSearches">
        {history.map(
-         city => <HistoryButton key={city} city={city} />
+         city => <HistoryButton key={city} city={city} act={search}/>
        )}
      </div>
-     <div id="weatherData">
-       {<div>Temperature: {currentCity.temperature}</div>}
-       {<div>Humidity: {currentCity.humidity}</div>}
-       {<div>Wind Speed: {currentCity.windSpeed}</div>}
-     </div>
+     {
+      doesCityExist 
+      ?
+      <div id="weatherData">
+        {<div>Temperature: {currentCity.temperature}</div>}
+        {<div>Humidity: {currentCity.humidity}</div>}
+        {<div>Wind Speed: {currentCity.windSpeed}</div>}
+      </div>
+      :
+      <div>
+        Ciudad no encontrada
+      </div>
+     }
+     
    </div>
  );
 }
