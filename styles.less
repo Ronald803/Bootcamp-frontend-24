@@ -1,0 +1,29 @@
+// variables
+@background-color: #ccc;
+@main-color:#eee;
+@box-background-color:#ff0000;
+@div-width:100px;
+
+body{
+    @main-color:#000;
+
+    background-color: @background-color;
+    // background-color: @main-color;
+}
+// mixins
+.border(@border-color: #292929){
+    border: solid 2px @border-color
+}
+
+// nesting
+.box{
+    width: 200px-@div-width;
+    height: 200px;
+    background-color: @box-background-color;
+    .border(blue);
+    .inner-box{
+        width: 50px;
+        height: 50px;
+        background-color: darken(@box-background-color,25%);//this is a function from less
+    }
+}
