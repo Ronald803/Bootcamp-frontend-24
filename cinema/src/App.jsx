@@ -1,53 +1,22 @@
 import './App.css'
-import Row from './components/Row';
-
+import { useState } from 'react';
+import CinemaSizeForm from './components/CinemaSizeForm';
+import CinemaComponent from './components/CinemaComponent';
 function App() {
-  class Seat {
-    constructor(row,column){
-      this.row = row;
-      this.column = column;
-      this.availability = true;
-    }
-  }
-  class Cinema {
-    constructor(rowsQuantity,seatsQuantity){
-      this.rowsQuantity = rowsQuantity;
-      this.seatsQuantity = seatsQuantity;
-      this.allSeats = [];
-      for (let i = 0; i < rowsQuantity; i++) {
-        let row = [];
-        for (let j = 0; j < seatsQuantity; j++) {
-            row.push(new Seat(i,j))                
-        }
-        this.allSeats.push(row)
-      }
-    }
-    showSeatStatus(){
-      console.log(this.allSeats);
-    }
-    reservaSeat(row,column){
-      let seat = this.allSeats[row][column];
-      if(seat != undefined){
-        if(this.allSeats[row][column].availability === true){
-          this.allSeats[row][column].availability = false;
-          console.log("Seat reserved");
-        } else {
-          console.log("Seat not available");
-        }
-      } else {
-        console.log("The seat does not exist");
-      }
-    }
-  }
-  const cinema1 = new Cinema(4,6);
+  const [cinemaSize, setCinemaSize] = useState({x:2,y:3})
+  const [cinemaCreated, setCinemaCreated] = useState(false)
   return (
     <div>
-      <h2 className='screen'>SCREEN</h2>
-      {cinema1.allSeats.map((row,i)=>{
-        return (
-          <Row seats={row} key={i} cinema={cinema1} rowNumber={i}/>
-        )
-      })}
+      {
+        cinemaCreated
+        ?
+        <CinemaComponent cinemaSize={cinemaSize}/>
+        :
+        <CinemaSizeForm
+          setCinemaCreated={setCinemaCreated}
+          setCinemaSize={setCinemaSize}
+        />
+      }
     </div>
   )
 }
