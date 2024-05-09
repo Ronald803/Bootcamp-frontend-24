@@ -22,7 +22,10 @@ export default function TaskApp() {
   }
 
   function handleDeleteTask(taskId) {
-    // setTasks(tasks.filter((t) => t.id !== taskId));
+    dispatch({
+      type: 'deleteTask',
+      id: taskId
+    })
   }
 
   return (
@@ -46,7 +49,7 @@ function taskReducer(tasks,action){
         text: action.text,
         done: action.done
       }]
-  } else if(action.type="updateTask"){
+  } else if(action.type=="updateTask"){
     let tasksUpdated = []
     tasks.forEach(task => {
       if(task.id == action.task.id){
@@ -56,6 +59,14 @@ function taskReducer(tasks,action){
       }
     });
     return tasksUpdated;    
+  } else if(action.type=="deleteTask"){
+    let tasksUpdated = [];
+    tasks.forEach(task=>{
+      if(task.id != action.id){
+        tasksUpdated.push(task)
+      }
+    })
+    return tasksUpdated;
   }
 }
 let nextId = 3;
