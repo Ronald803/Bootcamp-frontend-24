@@ -15,15 +15,10 @@ export default function TaskApp() {
   }
 
   function handleChangeTask(task) {
-    // setTasks(
-    //   tasks.map((t) => {
-    //     if (t.id === task.id) {
-    //       return task;
-    //     } else {
-    //       return t;
-    //     }
-    //   })
-    // );
+    dispatch({
+      type: 'updateTask',
+      task: task
+    })
   }
 
   function handleDeleteTask(taskId) {
@@ -51,6 +46,16 @@ function taskReducer(tasks,action){
         text: action.text,
         done: action.done
       }]
+  } else if(action.type="updateTask"){
+    let tasksUpdated = []
+    tasks.forEach(task => {
+      if(task.id == action.task.id){
+        tasksUpdated.push(action.task)
+      } else {
+        tasksUpdated.push(task)
+      }
+    });
+    return tasksUpdated;    
   }
 }
 let nextId = 3;
