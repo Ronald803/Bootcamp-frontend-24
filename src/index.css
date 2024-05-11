@@ -20,30 +20,3 @@ code {
   border-radius: 50% 50% 4px 4px;
   margin-bottom: 4vh;
 }
-
-.App {
-  margin-top: 4vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.cinema {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.row {
-  flex-direction: row;
-}
-
-.seat {
-  padding: 10px;
-}
-
-.set_img {
-  width: 30px;
-  height: 30px;
-}

@@ -43,25 +43,29 @@ function App() {
   
   return ( 
     <div className="App"> 
-      <div> 
-        <h1>Calculadora</h1> 
-      </div> 
-      <form> 
-        <input
-          pattern="[0-9]" 
-          ref={inputRef} 
-          type="number" 
-          placeholder="Type a number" 
-        /> 
-        <button onClick={plus}>add</button>
-        <button onClick={minus}>subtract</button>
-        <button onClick={times}>multiply</button>
-        <button onClick={divide}>divide</button>
-        <button onClick={resetInput}>resetInput</button>
-        <button onClick={resetResult}>resetResult</button>
-      </form>
-      <div>
-        <p>Result: {result}</p>
+      <div className="container">
+        <div className="titulo"> 
+          <h1>Calculadora</h1> 
+        </div> 
+        <form> 
+          <div className="input-number">
+            <input
+              pattern="[0-9]" 
+              ref={inputRef} 
+              type="number" 
+              placeholder="Type a number"
+            /> 
+          </div>
+          <button onClick={plus}>add</button>
+          <button onClick={minus}>subtract</button>
+          <button onClick={times}>multiply</button>
+          <button onClick={divide}>divide</button>
+          <button onClick={resetInput}>resetInput</button>
+          <button onClick={resetResult}>resetResult</button>
+        </form>
+        <div className="result">
+          <p>Result: {result}</p>
+        </div>
       </div>
     </div> 
   ); 
