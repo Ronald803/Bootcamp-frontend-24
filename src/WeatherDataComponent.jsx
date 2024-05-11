@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-function WeatherDataComponent({currentCity}) {
+function WeatherDataComponent({ currentCity }) {
   return (
     <div>
-      <div id="weatherData">
-        {<div>Temperature: {currentCity.temperature}</div>}
-        {<div>Humidity: {currentCity.humidity}</div>}
-        {<div>Wind Speed: {currentCity.windSpeed}</div>}
+      <div className="weather-data">
+        <div className="weather-data-item">Temperature: <span>{currentCity.temperature}</span></div>
+        <div className="weather-data-item">Humidity: <span>{currentCity.humidity}</span></div>
+        <div className="weather-data-item">Wind Speed: <span>{currentCity.windSpeed}</span></div>
       </div>
     </div>
-  )
+  );
 }
 
-export default WeatherDataComponent
+export default WeatherDataComponent;

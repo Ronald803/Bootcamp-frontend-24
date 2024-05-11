@@ -25,22 +25,20 @@ function WeatherDashboard() {
     setDoesCityExist(true)
   }
   return (
-   <div>
-     <input type="text" id="citySearch" placeholder="Search for a city..." ref={inputCityRef}/>
-     <button id="searchButton" onClick={handleSearch}>Search</button>
-     <div id="previousSearches">
-       {history.map(
-         city => <HistoryButton key={city} city={city} act={search}/>
-       )}
-     </div>
-     {
-      doesCityExist 
-      ?
+    <div className="weather-dashboard-container">
+      <input type="text" id="citySearch" className="city-search-input" placeholder="Search for a city..." ref={inputCityRef}/>
+      <button id="searchButton" className="search-button" onClick={handleSearch}>Search</button>
+      <div id="previousSearches" className="previous-searches">
+        {history.map(
+          city => <HistoryButton key={city} city={city} act={search}/>
+        )}
+      </div>
+      {doesCityExist ? (
         <WeatherDataComponent currentCity={currentCity}/>
-      :
-      <div> Ciudad no encontrada </div>
-     }
-   </div>
+      ) : (
+        <div className="city-not-found">Ciudad no encontrada</div>
+      )}
+    </div>
  );
 }
 export default WeatherDashboard;

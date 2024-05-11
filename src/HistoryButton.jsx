@@ -5,6 +5,7 @@ export function HistoryButton(props) {
 			key={city} 
 			id="cityButton" 
 			onClick={()=>props.act(city)}
+			className="city-button"
 		>
 			{city}
 		</button>
