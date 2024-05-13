@@ -1,13 +1,15 @@
 import { useState, useContext } from 'react';
 import { places } from './data.js';
 import { getImageUrl } from './utils.js';
-import { ImagesSizeContext} from './Context.js'
+import { ImageSizeContext} from './Context.js'
 
 export default function App() {
   const [isLarge, setIsLarge] = useState(false);
   const imageSize = isLarge ? 150 : 100;
   return (
-    <>
+    <ImageSizeContext.Provider
+      value={imageSize}
+    >
       <label>
         <input
           type="checkbox"
@@ -20,7 +22,7 @@ export default function App() {
       </label>
       <hr />
       <List imageSize={imageSize} />
-    </>
+    </ImageSizeContext.Provider>
   )
 }
 
@@ -51,7 +53,8 @@ function Place({ place, imageSize }) {
   );
 }
 
-function PlaceImage({ place, imageSize }) {
+function PlaceImage({ place }) {
+  const imageSize = useContext(ImageSizeContext)
   return (
     <img
       src={getImageUrl(place)}
