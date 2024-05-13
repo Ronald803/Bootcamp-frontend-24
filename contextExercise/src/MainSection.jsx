@@ -1,13 +1,12 @@
 import React, { useContext } from 'react'
-import { LanguagesContext } from '../LanguageContext'
+import { LanguagesContext } from './LanguageContext'
 
 function MainSection() {
-	const {language} = useContext (LanguagesContext)
-  console.log(language)
-	return (
+	const {language,toggleLanguage} = useContext (LanguagesContext)
+  return (
     <div>
       <p id="favoriteLanguage">favorite programing language: {language}</p>
-      <button id="changeFavorite">toggle language</button>
+      <button id="changeFavorite" onClick={toggleLanguage}>toggle language</button>
     </div>
   )
 }

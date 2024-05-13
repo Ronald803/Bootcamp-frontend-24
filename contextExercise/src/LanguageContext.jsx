@@ -1,5 +1,4 @@
-import React from 'react'
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
 const LanguagesContext = createContext();
 const LanguageContextProvider = ({children}) => {
@@ -9,9 +8,9 @@ const LanguageContextProvider = ({children}) => {
       setLanguage(languages[1])
     }
   return (
-    <LanguageContextProvider.Provider value={{language,toggleLanguage}}>
+    <LanguagesContext.Provider value={{language,toggleLanguage}}>
         {children}
-    </LanguageContextProvider.Provider>
+    </LanguagesContext.Provider>
   )
 }
 

@@ -13,7 +13,7 @@
  */
 
 
-import {LanguageContextProvider} from "../LanguageContext";
+import {LanguageContextProvider} from "./LanguageContext";
 import MainSection from "./MainSection";
 
 
