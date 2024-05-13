@@ -13,6 +13,7 @@
  */
 
 
+import LanguageAddForm from "./LanguageAddForm";
 import {LanguageContextProvider} from "./LanguageContext";
 import MainSection from "./MainSection";
 
@@ -22,6 +23,7 @@ export default function App() {
  return (
   <LanguageContextProvider>
     <MainSection/>
+    <LanguageAddForm/>
   </LanguageContextProvider>
 );
 }

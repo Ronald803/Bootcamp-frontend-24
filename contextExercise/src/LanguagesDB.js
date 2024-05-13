@@ -1,1 +1,1 @@
-export const languages = ['JavaScript', 'Python', 'C#'];
+export const languages = ['JavaScript', 'Python'];

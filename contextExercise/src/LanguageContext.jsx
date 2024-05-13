@@ -13,8 +13,11 @@ const LanguageContextProvider = ({children}) => {
       }
       setLanguage(languages[index])
     }
+    const addLanguageToDB = (newLanguage) => {
+      languages.push(newLanguage)
+    }
   return (
-    <LanguagesContext.Provider value={{language,toggleLanguage}}>
+    <LanguagesContext.Provider value={{language,toggleLanguage,addLanguageToDB}}>
         {children}
     </LanguagesContext.Provider>
   )
