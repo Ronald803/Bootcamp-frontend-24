@@ -18,22 +18,22 @@ import { getProducts } from './dataService';
 //  - The add and remove buttons should be enabled/disabled to ensure that the ordered quantity can’t be negative and can’t exceed the available count for that product.
 //  - ✔️ The total shown for each product should be calculated based on the ordered quantity and the price
 //  - ✔️ The total in the order summary should be calculated
-//  - For orders over $1000, apply a 10% discount to the order. Display the discount text only if a discount has been applied.
-//  - The total should reflect any discount that has been applied
+//  - ✔️ For orders over $1000, apply a 10% discount to the order. Display the discount text only if a discount has been applied.
+//  - ✔️ The total should reflect any discount that has been applied
 //  - All dollar amounts should be displayed to 2 decimal places
 
 
 
 
-const Product = ({ id, name, availableCount, price,setTotal,total}) => {
+const Product = ({ id, name, availableCount, price, setTotal, total, calculateTotal }) => {
   const [orderedQuantity, setOrderedQuantity] = useState(0)
   const [subtotal, setSubtotal] = useState(0)
-  const modifyQuantity = (amount)=>{
+  const modifyQuantity = (amount) => {
     const newQuantity = orderedQuantity + amount
     if(newQuantity>=0){
       setOrderedQuantity(orderedQuantity+amount)
       setSubtotal(price*newQuantity)
-      setTotal(total+(price*amount))
+      calculateTotal(price*amount)
     }
   }
   return (
@@ -45,8 +45,8 @@ const Product = ({ id, name, availableCount, price,setTotal,total}) => {
       <td>{orderedQuantity}</td>   
       <td>${subtotal}</td>
       <td>
-        <button className={styles.actionButton} onClick={()=>modifyQuantity(1)}>+</button>
-        <button className={styles.actionButton} onClick={()=>modifyQuantity(-1)}>-</button>
+        <button className={styles.actionButton} onClick={() => modifyQuantity(1)}>+</button>
+        <button className={styles.actionButton} onClick={() => modifyQuantity(-1)}>-</button>
       </td>
     </tr>    
   );
@@ -56,12 +56,23 @@ const Product = ({ id, name, availableCount, price,setTotal,total}) => {
 const Checkout = () => {
   const [allProducts, setAllProducts] = useState([])
   const [total, setTotal] = useState(0)
+  const [discount, setDiscount] = useState(0)
   useEffect(()=>{
     getAllProducts()
   },[])
   const getAllProducts = async()=>{
     const allProductsDB = await getProducts()
     setAllProducts(allProductsDB)
+  }
+  const calculateTotal = ( newQuantity ) => {
+    const partialTotal = total + newQuantity
+    if(partialTotal>1000){
+      setDiscount(partialTotal*0.1)
+      setTotal(partialTotal*0.9)
+    } else {
+      setTotal(total+newQuantity)
+      setDiscount(0)
+    }
   }
   return (
     <div>
@@ -84,22 +95,21 @@ const Checkout = () => {
           </thead>
           <tbody>
           {
-            allProducts?.map(product=>(
+            allProducts?.map(product => (
               <Product 
                 id={product.id}
                 name={product.name}
                 availableCount={product.availableCount}
                 price={product.price}
                 key={product.id}
-                setTotal={setTotal}
-                total={total}
+                calculateTotal={calculateTotal}
               />
             ))
           }
           </tbody>
         </table>
         <h2>Order summary</h2>
-        <p>Discount: $ </p>
+        <p>Discount: $ {discount}</p>
         <p>Total: $ {total}</p>       
       </main>
     </div>
