@@ -17,7 +17,7 @@ import { getProducts } from './dataService';
 //  - ✔️ The add and remove buttons should adjust the ordered quantity of each product
 //  - The add and remove buttons should be enabled/disabled to ensure that the ordered quantity can’t be negative and can’t exceed the available count for that product.
 //  - ✔️ The total shown for each product should be calculated based on the ordered quantity and the price
-//  - The total in the order summary should be calculated
+//  - ✔️ The total in the order summary should be calculated
 //  - For orders over $1000, apply a 10% discount to the order. Display the discount text only if a discount has been applied.
 //  - The total should reflect any discount that has been applied
 //  - All dollar amounts should be displayed to 2 decimal places
@@ -25,14 +25,15 @@ import { getProducts } from './dataService';
 
 
 
-const Product = ({ id, name, availableCount, price}) => {
+const Product = ({ id, name, availableCount, price,setTotal,total}) => {
   const [orderedQuantity, setOrderedQuantity] = useState(0)
-  const [total, setTotal] = useState(0)
+  const [subtotal, setSubtotal] = useState(0)
   const modifyQuantity = (amount)=>{
     const newQuantity = orderedQuantity + amount
     if(newQuantity>=0){
       setOrderedQuantity(orderedQuantity+amount)
-      setTotal(price*newQuantity)
+      setSubtotal(price*newQuantity)
+      setTotal(total+(price*amount))
     }
   }
   return (
@@ -42,7 +43,7 @@ const Product = ({ id, name, availableCount, price}) => {
       <td>{availableCount}</td>
       <td>${price}</td>
       <td>{orderedQuantity}</td>   
-      <td>${total}</td>
+      <td>${subtotal}</td>
       <td>
         <button className={styles.actionButton} onClick={()=>modifyQuantity(1)}>+</button>
         <button className={styles.actionButton} onClick={()=>modifyQuantity(-1)}>-</button>
@@ -54,6 +55,7 @@ const Product = ({ id, name, availableCount, price}) => {
 
 const Checkout = () => {
   const [allProducts, setAllProducts] = useState([])
+  const [total, setTotal] = useState(0)
   useEffect(()=>{
     getAllProducts()
   },[])
@@ -89,6 +91,8 @@ const Checkout = () => {
                 availableCount={product.availableCount}
                 price={product.price}
                 key={product.id}
+                setTotal={setTotal}
+                total={total}
               />
             ))
           }
@@ -96,7 +100,7 @@ const Checkout = () => {
         </table>
         <h2>Order summary</h2>
         <p>Discount: $ </p>
-        <p>Total: $ </p>       
+        <p>Total: $ {total}</p>       
       </main>
     </div>
   );
