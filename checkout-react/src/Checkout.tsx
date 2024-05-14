@@ -16,7 +16,7 @@ import { getProducts } from './dataService';
 // Implement the following functionality:
 //  - ✔️ The add and remove buttons should adjust the ordered quantity of each product
 //  - The add and remove buttons should be enabled/disabled to ensure that the ordered quantity can’t be negative and can’t exceed the available count for that product.
-//  - The total shown for each product should be calculated based on the ordered quantity and the price
+//  - ✔️ The total shown for each product should be calculated based on the ordered quantity and the price
 //  - The total in the order summary should be calculated
 //  - For orders over $1000, apply a 10% discount to the order. Display the discount text only if a discount has been applied.
 //  - The total should reflect any discount that has been applied
@@ -32,6 +32,7 @@ const Product = ({ id, name, availableCount, price}) => {
     const newQuantity = orderedQuantity + amount
     if(newQuantity>=0){
       setOrderedQuantity(orderedQuantity+amount)
+      setTotal(price*newQuantity)
     }
   }
   return (
