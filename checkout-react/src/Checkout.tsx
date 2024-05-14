@@ -23,7 +23,10 @@ import { getProducts } from './dataService';
 //  - All dollar amounts should be displayed to 2 decimal places
 
 
-
+const roundNumber = ( decimalNumber ) => {
+  let newNumber = Math.round(decimalNumber*100)
+  return newNumber/100
+}
 
 const Product = ({ id, name, availableCount, price, setTotal, total, calculateTotal }) => {
   const [orderedQuantity, setOrderedQuantity] = useState(0)
@@ -32,8 +35,8 @@ const Product = ({ id, name, availableCount, price, setTotal, total, calculateTo
     const newQuantity = orderedQuantity + amount
     if(newQuantity>=0){
       setOrderedQuantity(orderedQuantity+amount)
-      setSubtotal(price*newQuantity)
-      calculateTotal(price*amount)
+      setSubtotal(roundNumber(price*newQuantity))
+      calculateTotal(roundNumber(price*amount))
     }
   }
   return (
@@ -67,10 +70,10 @@ const Checkout = () => {
   const calculateTotal = ( newQuantity ) => {
     const partialTotal = total + newQuantity
     if(partialTotal>1000){
-      setDiscount(partialTotal*0.1)
-      setTotal(partialTotal*0.9)
+      setDiscount(roundNumber(partialTotal*0.1))
+      setTotal(roundNumber(partialTotal*0.9))
     } else {
-      setTotal(total+newQuantity)
+      setTotal(roundNumber(total+newQuantity))
       setDiscount(0)
     }
   }
