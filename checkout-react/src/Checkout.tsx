@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import { LoadingIcon } from './Icons';
+import { getProducts } from './dataService';
 // import { getProducts } from './dataService';
 
 // You are provided with an incomplete <Checkout /> component.
@@ -24,6 +26,7 @@ import { LoadingIcon } from './Icons';
 
 
 const Product = ({ id, name, availableCount, price, orderedQuantity, total }) => {
+
   return (
     <tr>
       <td>{id}</td>
@@ -42,6 +45,15 @@ const Product = ({ id, name, availableCount, price, orderedQuantity, total }) =>
 
 
 const Checkout = () => {
+  const [allProducts, setAllProducts] = useState([])
+  useEffect(()=>{
+    getAllProducts()
+  },[])
+  const getAllProducts = async()=>{
+    const allProductsDB = await getProducts()
+    setAllProducts(allProductsDB)
+    console.log(allProducts);    
+  }
   return (
     <div>
       <header className={styles.header}>        
@@ -63,7 +75,13 @@ const Checkout = () => {
             </tr>
           </thead>
           <tbody>
-          {/* Products should be rendered here */}
+          {
+            allProducts?.map(product=>(
+              <div>
+                {product.name}
+              </div>
+            ))
+          }
           </tbody>
         </table>
         <h2>Order summary</h2>
