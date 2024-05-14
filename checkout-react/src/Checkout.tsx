@@ -10,11 +10,11 @@ import { getProducts } from './dataService';
 
 // Demo video - You can view how the completed functionality should look at: https://drive.google.com/file/d/1bcXpGUzJUyUwITOqEn8QPj8ZOgUbTGQD/view?usp=sharing
 
-// Once the <Checkout /> component is mounted, load the products using the getProducts function.
-// Once all the data is successfully loaded, hide the loading icon.
-// Render each product object as a <Product/> component, passing in the necessary props.
+// ✔️ Once the <Checkout /> component is mounted, load the products using the getProducts function.
+// ✔️ Once all the data is successfully loaded, hide the loading icon.
+// ✔️ Render each product object as a <Product/> component, passing in the necessary props.
 // Implement the following functionality:
-//  - The add and remove buttons should adjust the ordered quantity of each product
+//  - ✔️ The add and remove buttons should adjust the ordered quantity of each product
 //  - The add and remove buttons should be enabled/disabled to ensure that the ordered quantity can’t be negative and can’t exceed the available count for that product.
 //  - The total shown for each product should be calculated based on the ordered quantity and the price
 //  - The total in the order summary should be calculated
@@ -25,8 +25,15 @@ import { getProducts } from './dataService';
 
 
 
-const Product = ({ id, name, availableCount, price, orderedQuantity, total }) => {
-
+const Product = ({ id, name, availableCount, price}) => {
+  const [orderedQuantity, setOrderedQuantity] = useState(0)
+  const [total, setTotal] = useState(0)
+  const modifyQuantity = (amount)=>{
+    const newQuantity = orderedQuantity + amount
+    if(newQuantity>=0){
+      setOrderedQuantity(orderedQuantity+amount)
+    }
+  }
   return (
     <tr>
       <td>{id}</td>
@@ -36,8 +43,8 @@ const Product = ({ id, name, availableCount, price, orderedQuantity, total }) =>
       <td>{orderedQuantity}</td>   
       <td>${total}</td>
       <td>
-        <button className={styles.actionButton}>+</button>
-        <button className={styles.actionButton}>-</button>
+        <button className={styles.actionButton} onClick={()=>modifyQuantity(1)}>+</button>
+        <button className={styles.actionButton} onClick={()=>modifyQuantity(-1)}>-</button>
       </td>
     </tr>    
   );
@@ -52,7 +59,6 @@ const Checkout = () => {
   const getAllProducts = async()=>{
     const allProductsDB = await getProducts()
     setAllProducts(allProductsDB)
-    console.log(allProducts);    
   }
   return (
     <div>
@@ -60,7 +66,6 @@ const Checkout = () => {
         <h1>Electro World</h1>        
       </header>
       <main>
-        <LoadingIcon />        
         <table className={styles.table}>
           <thead>
             <tr>
@@ -82,8 +87,7 @@ const Checkout = () => {
                 name={product.name}
                 availableCount={product.availableCount}
                 price={product.price}
-                orderedQuantity={0}
-                total={0}
+                key={product.id}
               />
             ))
           }
