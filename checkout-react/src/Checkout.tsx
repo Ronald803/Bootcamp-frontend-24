@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import { LoadingIcon } from './Icons';
 import { getProducts } from './dataService';
-// import { getProducts } from './dataService';
 
 // You are provided with an incomplete <Checkout /> component.
 // You are not allowed to add any additional HTML elements.
@@ -22,6 +21,7 @@ import { getProducts } from './dataService';
 //  - For orders over $1000, apply a 10% discount to the order. Display the discount text only if a discount has been applied.
 //  - The total should reflect any discount that has been applied
 //  - All dollar amounts should be displayed to 2 decimal places
+
 
 
 
@@ -77,9 +77,14 @@ const Checkout = () => {
           <tbody>
           {
             allProducts?.map(product=>(
-              <div>
-                {product.name}
-              </div>
+              <Product 
+                id={product.id}
+                name={product.name}
+                availableCount={product.availableCount}
+                price={product.price}
+                orderedQuantity={0}
+                total={0}
+              />
             ))
           }
           </tbody>
