@@ -28,7 +28,7 @@ const roundNumber = ( decimalNumber ) => {
   return newNumber/100
 }
 
-const Product = ({ id, name, availableCount, price, setTotal, total, calculateTotal }) => {
+const Product = ({ id, name, availableCount, price, setSubtotals, subtotals,calculateTotal }) => {
   const [orderedQuantity, setOrderedQuantity] = useState(0)
   const [subtotal, setSubtotal] = useState(0)
   const modifyQuantity = (amount) => {
@@ -36,7 +36,10 @@ const Product = ({ id, name, availableCount, price, setTotal, total, calculateTo
     if(newQuantity>=0){
       setOrderedQuantity(orderedQuantity+amount)
       setSubtotal(roundNumber(price*newQuantity))
-      calculateTotal(roundNumber(price*amount))
+      let newSubtotal = subtotals
+      newSubtotal[id] = roundNumber(price*newQuantity)
+      setSubtotals(newSubtotal)
+      calculateTotal()
     }
   }
   return (
@@ -60,20 +63,29 @@ const Checkout = () => {
   const [allProducts, setAllProducts] = useState([])
   const [total, setTotal] = useState(0)
   const [discount, setDiscount] = useState(0)
+  const [subTotals, setSubTotals] = useState([])
   useEffect(()=>{
     getAllProducts()
   },[])
   const getAllProducts = async()=>{
     const allProductsDB = await getProducts()
     setAllProducts(allProductsDB)
+    let newArray = allProductsDB.map(()=> 0)
+    setSubTotals(newArray)
   }
-  const calculateTotal = ( newQuantity ) => {
-    const partialTotal = total + newQuantity
+  const calculateTotal = ( ) => {
+    //const partialTotal = total + newQuantity
+    let partialTotal = 0;
+    subTotals.forEach(subt =>{
+      partialTotal=partialTotal+subt
+    })
+    console.log(partialTotal);
+    
     if(partialTotal>1000){
       setDiscount(roundNumber(partialTotal*0.1))
       setTotal(roundNumber(partialTotal*0.9))
     } else {
-      setTotal(roundNumber(total+newQuantity))
+      setTotal(partialTotal)
       setDiscount(0)
     }
   }
@@ -106,6 +118,8 @@ const Checkout = () => {
                 price={product.price}
                 key={product.id}
                 calculateTotal={calculateTotal}
+                setSubtotals={setSubTotals}
+                subtotals={subTotals}
               />
             ))
           }
