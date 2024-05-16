@@ -6,5 +6,15 @@ module.exports = {
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist')
-    }
+    },
+    devtool: 'source-map',
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            filename: 'index.html',
+            minify: {
+                collapseWhitespace: true,
+            }
+        })
+    ]
 }
