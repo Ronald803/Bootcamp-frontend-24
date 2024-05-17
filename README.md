@@ -63,3 +63,68 @@
 
   ![Screenshot of the web navigator](screenshot-navegador.png)
 
+# Mod DEV - PROD - COMMON
+
+- Webpack Documentation recommends to separate webpack configurations for each environment
+- While we will separate the production and development we'll still maintain a "common" configuration to keep things DRY (don't repeat yourself). 
+- In order to merge these configurations together, we'll use a utility called webpack-merge. 
+- With the "common" configuration in place, we won't have to duplicate code within the environment-specific configurations.
+
+```js
+// webpack common
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: {
+    app: './src/index.js',
+  },    
+  devServer: {
+    static: {
+	    directory: path.join(__dirname, 'dist'),
+	},
+    compress: true,
+    port: 9000,
+    hot: true,
+    },
+  plugins: [
+    new HtmlWebpackPlugin({
+        template: './index.html',
+        filename: 'index.html',
+        minify: {
+            collapseWhitespace: true,
+        }
+    }),
+  ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
+};
+```
+
+```js
+//webpack dev
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+  },
+});
+```
+
+```js
+// webpack prod
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
+  mode: 'production',
+  devtool: 'source-map'
+});
+```
