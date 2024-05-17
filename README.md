@@ -45,3 +45,21 @@
 - With source maps, when an error occurs in the browser, you can see exactly which line of the original code the problem occurred, instead of just seeing the minified code, which can be difficult to understand.
 - The main advantages of using source maps are Easy debugging and beter readability of the code
 
+# DEV SERVER
+- Webpack-dev-server can be used to quickly develop an application
+- Acts as a development server serving your application
+- Features:
+  - Hot module replacement, dev server allows the modules to update in real time without refreshing the whole page. This is very useful because you can see the changes you make in a module inmediately
+  - Live Reloading, Dev server detects when there are changes in files and reloads the whole page
+  - Serve static files
+  - Proxying, Allows you to configure proxies to redirect requests to other servers.
+  - It can be easily configured within the webpack configuration file, allowing you to customize the server according to the needs of the project.
+
+- As an example, web server is implement in the current project, you can see the console, this project is beeing served in the port 9000
+
+  ![Screenshot of the console](screenshot-console.png)
+
+- This is a web navigator where you can see that the current project is beeing served in the port 90000
+
+  ![Screenshot of the web navigator](screenshot-navegador.png)
+
