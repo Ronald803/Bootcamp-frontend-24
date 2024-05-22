@@ -10,3 +10,6 @@
   - ✔️ Push the code to Github Repository
   - ✔️ Add a README where all the objectives are
   - ✔️ At least the README should have the steps to run the project
+- Challenge 1 - Home
+	- ✔️ Clean App.tsx
+	- ✔️ First version of buttonAtom and Navbar created
