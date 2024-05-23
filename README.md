@@ -13,3 +13,4 @@
 - Challenge 1 - Home
 	- ✔️ Clean App.tsx
 	- ✔️ First version of buttonAtom and Navbar created
+  - ✔️ Styles added to buttonAtom and Navbar

@@ -1,11 +1,13 @@
 import ButtonWithoutBackground from "../../atoms/buttons/ButtonWithoutBackground";
+import '../../../styles/navbar.css';
 function Navbar() {
   return (
-    <div>
-      <div>
+    <div className="navbar">
+      <div className="navbar-logo">
+				<img src="/pokeball.png" className="navbar-logo-img"/>
 				Pokedex
 			</div>
-			<div>
+			<div className="navbar-buttons">
 				<ButtonWithoutBackground
 					buttonText="Game"
 					onClick={console.log}
