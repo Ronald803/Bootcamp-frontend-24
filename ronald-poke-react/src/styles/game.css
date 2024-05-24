@@ -1,0 +1,9 @@
+.game-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.game-button-list {
+	width: 900px;
+}
