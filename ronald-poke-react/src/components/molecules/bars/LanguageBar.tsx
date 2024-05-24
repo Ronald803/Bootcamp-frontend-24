@@ -6,10 +6,11 @@ function LanguageBar(props:any) {
       <div className="navlanguage-text">Select a Language</div>
 			<div className="navlanguage-buttons">
 				{
-					props.languagesAvailable.map((language) => (
+					props.languagesAvailable.map((language:string,index:number) => (
 						<ButtonWithoutBackground
 							buttonText={language}
-							onClick={console.log}
+							onClick={props.setLanguageChoosen}
+							key={index}
 						/>
 					))
 				}

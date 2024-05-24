@@ -15,3 +15,4 @@
 	- ✔️ First version of buttonAtom and Navbar created
   - ✔️ Styles added to buttonAtom and Navbar
   - ✔️ ButtonsList, languageBar, Game components created
+  - ✔️ Switching names with languageButton correctly implemented

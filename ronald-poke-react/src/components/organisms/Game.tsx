@@ -1,33 +1,43 @@
+import {useState,useEffect} from 'react'
 import ButtonsList from "../molecules/lists/ButtonsList"
 import '../../styles/game.css'
-import { getPokemonsList } from "../../modules/pokeApiRequests"
 import LanguageBar from "../molecules/bars/LanguageBar"
-function Game() {
-  const pokemonOptions = ["Pikachu","Charizard","Gengar","Articuno"]
-  const pokemonsList = getPokemonsList()
-  const pokemonsRandomFour = chooseFourRandom(pokemonsList);
-  const languagesAvailable = ["English", "Spanish", "Japanese"]
+
+function Game(props:any) {
+  const languagesAvailable = ["en","es","ko","ja"]
+  const [languageChoosen, setLanguageChoosen] = useState(null)
+  const [pokemonsNames, setPokemonsNames] = useState([])
+  useEffect(()=>{
+    let pokemonsNamesUpdatedLanguage:Array<string> = []
+    props.pokemonsRandomFour.forEach(pokemon=>{
+      let name:string = "";
+      pokemon.names.forEach(pokemonName=>{
+        if(pokemonName.language.name==languageChoosen){
+          name = pokemonName.name
+        }
+      })
+      pokemonsNamesUpdatedLanguage.push(name)
+    })
+    setPokemonsNames(pokemonsNamesUpdatedLanguage)
+    console.log(pokemonsNames)
+  },[languageChoosen])
+  console.log(props.pokemonsRandomFour);
+  console.log(props.oneRandomNumber)
   return (
     <div>
-      <LanguageBar languagesAvailable={languagesAvailable}/>
+      <LanguageBar 
+        languagesAvailable={languagesAvailable}
+        setLanguageChoosen={setLanguageChoosen}
+      />
       <div className="game-main-container">
         <div className="game-button-list">
-          <ButtonsList arrayButtons={pokemonOptions} />
+          <ButtonsList arrayButtons={pokemonsNames} />
         </div>
       </div>
+      {languageChoosen}
     </div>
   )
 }
 
 export default Game
 
-const chooseFourRandom = (pokeList) => {
-  let pokemonsListCopy = [...pokeList]
-  let choosen = [];
-  for (let i = 0; i < 4; i++) {
-    let randomNumber = Math.floor(Math.random() * pokemonsListCopy.length)
-    choosen.push(pokemonsListCopy[randomNumber])
-    pokemonsListCopy.splice(randomNumber,1)
-  }
-  return choosen
-}

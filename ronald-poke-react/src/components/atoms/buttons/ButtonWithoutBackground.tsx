@@ -1,7 +1,7 @@
 import '../../../styles/buttonWithoutBackground.css'
 function ButtonWithoutBackground(props:any) {
 	const handleClick = () => {
-		props.onClick("click on "+props.buttonText)
+		props.onClick(props.buttonText)
 	}
   return (
     <button onClick={handleClick} className='button-without-background'>
