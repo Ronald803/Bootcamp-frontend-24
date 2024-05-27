@@ -29,12 +29,17 @@ function Game(props:any) {
         languagesAvailable={languagesAvailable}
         setLanguageChoosen={setLanguageChoosen}
       />
+      <div className='game-image-container'>
+        <img 
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemonsRandomFour[props.oneRandomNumber]?.id}.png`}
+          className='game-imagepokemon'
+        />
+      </div>
       <div className="game-main-container">
         <div className="game-button-list">
           <ButtonsList arrayButtons={pokemonsNames} />
         </div>
       </div>
-      {languageChoosen}
     </div>
   )
 }

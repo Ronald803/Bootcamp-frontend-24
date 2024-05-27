@@ -7,3 +7,14 @@
 .game-button-list {
 	width: 900px;
 }
+
+.game-imagepokemon {
+  width: 200px;
+  filter: contrast(0%);
+}
+
+.game-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

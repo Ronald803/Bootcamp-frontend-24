@@ -16,3 +16,4 @@
   - ✔️ Styles added to buttonAtom and Navbar
   - ✔️ ButtonsList, languageBar, Game components created
   - ✔️ Switching names with languageButton correctly implemented
+  - ✔️ Pokemon image obtained from api, and modify with classes in order to see just the siluet
