@@ -7,6 +7,7 @@ function Game(props:any) {
   const languagesAvailable = ["en","es","ko","ja"]
   const [languageChoosen, setLanguageChoosen] = useState(null)
   const [pokemonsNames, setPokemonsNames] = useState([])
+  const [pokemonChoosen, setPokemonChoosen] = useState(null)
   useEffect(()=>{
     let pokemonsNamesUpdatedLanguage:Array<string> = []
     props.pokemonsRandomFour.forEach(pokemon=>{
@@ -31,15 +32,16 @@ function Game(props:any) {
       />
       <div className='game-image-container'>
         <img 
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemonsRandomFour[props.oneRandomNumber]?.id}.png`}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${props.pokemonsRandomFour[props.oneRandomNumber]?.id}.png`}
           className='game-imagepokemon'
         />
       </div>
       <div className="game-main-container">
         <div className="game-button-list">
-          <ButtonsList arrayButtons={pokemonsNames} />
+          <ButtonsList arrayButtons={pokemonsNames} setPokemonChoosen={setPokemonChoosen}/>
         </div>
       </div>
+      {pokemonChoosen}
     </div>
   )
 }

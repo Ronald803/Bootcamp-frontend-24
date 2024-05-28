@@ -7,7 +7,7 @@ function ButtonsList(props:any) {
 				props.arrayButtons.map((butt:string) => (
 					<ButtonRed
 						buttonText={butt}
-						onClick={console.log}
+						onClick={props.setPokemonChoosen}
 					/>
 				))
 			}
