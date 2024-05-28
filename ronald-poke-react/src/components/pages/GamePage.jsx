@@ -17,9 +17,10 @@ function GamePage() {
   return (
     <div>
 			<Game
-        pokemonsRandomFour = {pokemonsRandomFour }
+        pokemonsRandomFour = { pokemonsRandomFour }
         oneRandomNumber = { oneRandomNumber }
 				setGameScore =  { setGameScore }
+				gameScore = { gameScore }
       />
 			<GameScore
 				gameScore = {gameScore}

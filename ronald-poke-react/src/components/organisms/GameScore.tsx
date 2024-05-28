@@ -1,8 +1,8 @@
-import React from 'react'
-
-function GameScore() {
+function GameScore({gameScore}) {
   return (
-    <div>GameScore</div>
+    <div>
+        {gameScore}
+    </div>
   )
 }
 

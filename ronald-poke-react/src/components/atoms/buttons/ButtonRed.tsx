@@ -1,7 +1,7 @@
 import '../../../styles/buttonBackgroundRed.css'
 function ButtonRed(props:any) {
 	const handleClick = () => {
-		props.onClick(props.buttonText)
+		props.onClick(props.idButton)
 	}
   return (
 		<button onClick={handleClick} className='button-background-red'>

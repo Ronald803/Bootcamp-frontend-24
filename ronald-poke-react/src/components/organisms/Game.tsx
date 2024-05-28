@@ -17,13 +17,19 @@ function Game(props:any) {
           name = pokemonName.name
         }
       })
-      pokemonsNamesUpdatedLanguage.push(name)
+      pokemonsNamesUpdatedLanguage.push({name,id:pokemon.id})
     })
     setPokemonsNames(pokemonsNamesUpdatedLanguage)
-    console.log(pokemonsNames)
-  },[languageChoosen])
+
+    if(pokemonChoosen == props.pokemonsRandomFour[props.oneRandomNumber]?.id){
+      alert("Good!!!!")
+      props.setGameScore(props.gameScore+1)
+    } else {
+      alert("Buhhhhh!!!!")
+    }
+  },[languageChoosen,pokemonChoosen])
   console.log(props.pokemonsRandomFour);
-  console.log(props.oneRandomNumber)
+  
   return (
     <div>
       <LanguageBar 
@@ -41,7 +47,6 @@ function Game(props:any) {
           <ButtonsList arrayButtons={pokemonsNames} setPokemonChoosen={setPokemonChoosen}/>
         </div>
       </div>
-      {pokemonChoosen}
     </div>
   )
 }

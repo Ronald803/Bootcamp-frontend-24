@@ -4,10 +4,11 @@ function ButtonsList(props:any) {
   return (
     <div className="buttonlist">
 			{
-				props.arrayButtons.map((butt:string) => (
+				props.arrayButtons.map((butt:any) => (
 					<ButtonRed
-						buttonText={butt}
+						buttonText={butt.name}
 						onClick={props.setPokemonChoosen}
+						idButton={butt.id}
 					/>
 				))
 			}
