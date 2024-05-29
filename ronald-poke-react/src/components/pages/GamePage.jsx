@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {getPokemonsList} from '../../modules/pokeApiRequests'
 import Game from '../organisms/Game'
 import GameScore from '../organisms/GameScore'
+import { GeneralContext } from '../../modules/Context/GeneralContext'
 
 function GamePage() {
-  const [pokemonsRandomFour, setPokemonsRandomFour] = useState([])
-	const oneRandomNumber = Math.floor(Math.random() * 4)
+  const { setPokemonImageClass,setPokemonsRandomFour,setOneRandomNumber, } = useContext(GeneralContext)
+	setOneRandomNumber(Math.floor(Math.random() * 4))
   useEffect(()=>{
     newGame()
   },[])
   const newGame = async () => {
+		setPokemonImageClass('game-imagepokemon-shadow')
     const pokemonsList = await getPokemonsList()
     setPokemonsRandomFour(chooseFourRandom(pokemonsList));
   }
   return (
     <div>
-			<Game
-        pokemonsRandomFour = { pokemonsRandomFour }
-        oneRandomNumber = { oneRandomNumber }
-      />
+			<Game/>
 			<GameScore/>
     </div>
   )
