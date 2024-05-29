@@ -5,8 +5,7 @@ import GameScore from '../organisms/GameScore'
 
 function GamePage() {
   const [pokemonsRandomFour, setPokemonsRandomFour] = useState([])
-	const [gameScore, setGameScore] = useState(0)
-  const oneRandomNumber = Math.floor(Math.random() * 4)
+	const oneRandomNumber = Math.floor(Math.random() * 4)
   useEffect(()=>{
     newGame()
   },[])
@@ -19,12 +18,8 @@ function GamePage() {
 			<Game
         pokemonsRandomFour = { pokemonsRandomFour }
         oneRandomNumber = { oneRandomNumber }
-				setGameScore =  { setGameScore }
-				gameScore = { gameScore }
       />
-			<GameScore
-				gameScore = {gameScore}
-			/>
+			<GameScore/>
     </div>
   )
 }

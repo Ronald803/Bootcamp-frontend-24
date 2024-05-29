@@ -8,9 +8,12 @@
 	width: 900px;
 }
 
-.game-imagepokemon {
+.game-imagepokemon-shadow {
   width: 200px;
   filter: contrast(0%);
+}
+.game-imagepokemon {
+  width: 200px;
 }
 
 .game-image-container {
