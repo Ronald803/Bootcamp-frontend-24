@@ -9,6 +9,7 @@ export const GeneralProvider = ({ children }) => {
 	const [pokemonChoosenGame, setPokemonChoosenGame] = useState(null)
 	const [pokemonsRandomFour, setPokemonsRandomFour] = useState([])
 	const [oneRandomNumber, setOneRandomNumber] = useState(null)
+	const [isGameStarted, setIsGameStarted] = useState(false)
 	return (
     <GeneralContext.Provider
 			value={{
@@ -18,7 +19,8 @@ export const GeneralProvider = ({ children }) => {
 				attempStatus,setAttempStatus,
 				pokemonChoosenGame, setPokemonChoosenGame,
 				pokemonsRandomFour, setPokemonsRandomFour,
-				oneRandomNumber, setOneRandomNumber
+				oneRandomNumber, setOneRandomNumber,
+				isGameStarted, setIsGameStarted
 			}}
 		>
       { children }

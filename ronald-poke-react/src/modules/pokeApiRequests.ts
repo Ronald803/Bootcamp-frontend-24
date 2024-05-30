@@ -1,5 +1,6 @@
 const url = "https://pokeapi.co/api/v2/pokemon-species/";
 export async function getPokemonsList() {
+  console.log("request to backend")
   let pokemonsList = [];
   let pokemonsDetailsList = [];
   try {

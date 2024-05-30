@@ -6,15 +6,13 @@ import { GeneralContext } from '../../modules/Context/GeneralContext'
 import Popup from '../molecules/Popup'
 
 function GamePage() {
-  const { setPokemonImageClass,setPokemonsRandomFour,setOneRandomNumber, } = useContext(GeneralContext)
-	const [isGameStarted, setIsGameStarted] = useState(false)
-  const newGame = async () => {
+  const { setPokemonImageClass,setPokemonsRandomFour,setOneRandomNumber,pokemonChoosenGame,isGameStarted, setIsGameStarted } = useContext(GeneralContext)
+	const newGame = async () => {
 		setPokemonImageClass('game-imagepokemon-shadow')
     const pokemonsList = await getPokemonsList()
     setPokemonsRandomFour(chooseFourRandom(pokemonsList));
     setIsGameStarted(true)
     setOneRandomNumber(Math.floor(Math.random() * 4))
-    console.log("asdfasdfasdf");
   }
   return (
     <div>
@@ -28,7 +26,8 @@ function GamePage() {
         />
       }
 			<Game/>
-			{/* <GameScore/> */}
+			<GameScore/>
+      {pokemonChoosenGame}
     </div>
   )
 }
