@@ -3,22 +3,32 @@ import {getPokemonsList} from '../../modules/pokeApiRequests'
 import Game from '../organisms/Game'
 import GameScore from '../organisms/GameScore'
 import { GeneralContext } from '../../modules/Context/GeneralContext'
+import Popup from '../molecules/Popup'
 
 function GamePage() {
   const { setPokemonImageClass,setPokemonsRandomFour,setOneRandomNumber, } = useContext(GeneralContext)
-	setOneRandomNumber(Math.floor(Math.random() * 4))
-  useEffect(()=>{
-    newGame()
-  },[])
+	const [isGameStarted, setIsGameStarted] = useState(false)
   const newGame = async () => {
 		setPokemonImageClass('game-imagepokemon-shadow')
     const pokemonsList = await getPokemonsList()
     setPokemonsRandomFour(chooseFourRandom(pokemonsList));
+    setIsGameStarted(true)
+    setOneRandomNumber(Math.floor(Math.random() * 4))
+    console.log("asdfasdfasdf");
   }
   return (
     <div>
+      {
+        !isGameStarted 
+        &&
+        <Popup
+          message={"Would you like to start a new game?"}
+          onAccept={newGame}
+          buttonText={"Start!"}
+        />
+      }
 			<Game/>
-			<GameScore/>
+			{/* <GameScore/> */}
     </div>
   )
 }
