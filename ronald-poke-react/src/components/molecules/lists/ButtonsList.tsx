@@ -14,6 +14,7 @@ function ButtonsList(props) {
 		attemptsGame
 	 } = useContext(GeneralContext)
 	const handlePokemonChoosen = (pokeIdChoosen) => {
+		console.log(pokeIdChoosen)
 		if(pokemonsRandomFour[oneRandomNumber].id  == pokeIdChoosen){
 			setGameScore(gameScore+1)
 		}

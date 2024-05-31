@@ -1,9 +1,10 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import '../../../styles/dropDownLanguageBar.css'
+import { GeneralContext } from '../../../modules/Context/GeneralContext';
 function DropdownLanguageBar({options, onSelect}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const { allLanguages } = useContext(GeneralContext)
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleOptionClick = (option) => {
@@ -19,7 +20,7 @@ function DropdownLanguageBar({options, onSelect}) {
       </button>
       {isOpen && (
         <div className="dropdown-menu">
-          {options.map((option,index) => (
+          {allLanguages.map((option,index) => (
             <div
               key={index}
               className="dropdown-item"

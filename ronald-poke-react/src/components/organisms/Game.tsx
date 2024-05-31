@@ -16,7 +16,7 @@ function Game(props:any) {
 
   useEffect(()=>{
     console.log("language choosen", languageChoosen)
-    console.log(pokemonsRandomFour)
+    //console.log(pokemonsRandomFour)
     let pokemonsNamesUpdatedLanguage:Array<string> = []
     pokemonsRandomFour.forEach(pokemon=>{
       let name:string = "";
