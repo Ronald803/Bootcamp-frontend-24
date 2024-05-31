@@ -1,0 +1,29 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: pink;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  width: 100%;
+  background-color: pink;
+  color: white;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: red;
+}

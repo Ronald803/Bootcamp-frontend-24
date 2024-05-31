@@ -13,7 +13,7 @@ function ButtonsList(props) {
 		setAttemptsGame,
 		attemptsGame
 	 } = useContext(GeneralContext)
-	const handlePokemonChoosen = (pokeNameChoosen,pokeIdChoosen) => {
+	const handlePokemonChoosen = (pokeIdChoosen) => {
 		if(pokemonsRandomFour[oneRandomNumber].id  == pokeIdChoosen){
 			setGameScore(gameScore+1)
 		}
@@ -24,10 +24,10 @@ function ButtonsList(props) {
 	return (
     <div className="buttonlist">
 			{
-				pokemonsRandomFour.map((butt:any,i:number) => (
+				props.arrayButtons.map((butt:any,i:number) => (
 					<ButtonRed
 						buttonText={butt.name}
-						onClick={()=>handlePokemonChoosen(butt.name,butt.id)}
+						onClick={()=>handlePokemonChoosen(butt.id)}
 						idButton={butt.id}
 						key={i}
 					/>

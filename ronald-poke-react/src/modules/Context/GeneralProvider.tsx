@@ -11,6 +11,7 @@ export const GeneralProvider = ({ children }) => {
 	const [oneRandomNumber, setOneRandomNumber] = useState(null)
 	const [isGameStarted, setIsGameStarted] = useState(false)
 	const [attemptsGame, setAttemptsGame] = useState(0)
+	const [languagesAvailable, setLanguagesAvailable] = useState(["en","ja"])
 	return (
     <GeneralContext.Provider
 			value={{
@@ -22,7 +23,8 @@ export const GeneralProvider = ({ children }) => {
 				pokemonsRandomFour, setPokemonsRandomFour,
 				oneRandomNumber, setOneRandomNumber,
 				isGameStarted, setIsGameStarted,
-				attemptsGame, setAttemptsGame
+				attemptsGame, setAttemptsGame,
+				languagesAvailable, setLanguagesAvailable
 			}}
 		>
       { children }
