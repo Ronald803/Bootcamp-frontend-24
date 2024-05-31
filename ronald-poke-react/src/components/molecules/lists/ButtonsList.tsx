@@ -9,7 +9,9 @@ function ButtonsList(props) {
 		oneRandomNumber,
 		setIsGameStarted,
 		setPokemonImageClass,
-		pokemonsRandomFour
+		pokemonsRandomFour,
+		setAttemptsGame,
+		attemptsGame
 	 } = useContext(GeneralContext)
 	const handlePokemonChoosen = (pokeNameChoosen,pokeIdChoosen) => {
 		if(pokemonsRandomFour[oneRandomNumber].id  == pokeIdChoosen){
@@ -17,6 +19,7 @@ function ButtonsList(props) {
 		}
 		setPokemonImageClass('game-imagepokemon')
 		setIsGameStarted(false)
+		setAttemptsGame(attemptsGame+1)
 	}
 	return (
     <div className="buttonlist">

@@ -1,20 +1,19 @@
 import { useContext, useEffect } from "react"
 import { GeneralContext } from "../../modules/Context/GeneralContext"
-
+import "../../styles/gameScore.css"
 function GameScore() {
-  const { gameScore,setGameScore, pokemonChoosenGame,setPokemonImageClass,pokemonsRandomFour,oneRandomNumber } = useContext(GeneralContext)
-  // useEffect(()=>{
-  //   if(pokemonChoosenGame == pokemonsRandomFour[oneRandomNumber]?.id){
-  //     setGameScore(gameScore+1)
-  //     // setPokemonImageClass('game-imagepokemon')
-  //     // setTimeout(()=>{
-  //     //   setPokemonImageClass('game-imagepokemon-shadow')
-  //     // },"1000")
-  //   } 
-  // },pokemonChoosenGame)
+  const { gameScore,attemptsGame } = useContext(GeneralContext)
+  
   return (
-    <div>
-        {gameScore}
+    <div className="game-score-container">
+        <div className="game-score">
+          <div>Points:</div> 
+          <div>{gameScore} / 4</div>
+        </div>
+        <div className="game-score">
+          <div>Attempts:</div>
+          <div>{attemptsGame} / 4</div>
+        </div>
     </div>
   )
 }
