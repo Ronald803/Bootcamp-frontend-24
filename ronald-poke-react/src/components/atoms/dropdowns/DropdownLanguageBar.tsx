@@ -1,7 +1,7 @@
 import {useContext, useState} from 'react'
 import '../../../styles/dropDownLanguageBar.css'
 import { GeneralContext } from '../../../modules/Context/GeneralContext';
-function DropdownLanguageBar({options, onSelect}) {
+function DropdownLanguageBar({onSelect}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const { allLanguages } = useContext(GeneralContext)

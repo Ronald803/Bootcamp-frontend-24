@@ -3,8 +3,15 @@ import '../../../styles/languageBar.css'
 import { useContext } from "react"
 import { GeneralContext } from "../../../modules/Context/GeneralContext"
 import DropdownLanguageBar from "../../atoms/dropdowns/DropdownLanguageBar"
-function LanguageBar(props:any) {
-	const {languagesAvailable} = useContext(GeneralContext)
+function LanguageBar() {
+	const {languagesAvailable,setLanguageChoosen,setLanguagesAvailable,setAllLanguages,allLanguages} = useContext(GeneralContext)
+	const handleSelectNewLanguage = (newLanguage:string) => {
+		setLanguagesAvailable([...languagesAvailable,newLanguage])
+		const auxLanguages = allLanguages
+		const index = auxLanguages.findIndex(language=>language==newLanguage)
+		auxLanguages.splice(index,1)
+		setAllLanguages(auxLanguages)
+	}
 	return (
     <div className="navlanguage">
       <div className="navlanguage-text">Select a Language</div>
@@ -13,7 +20,7 @@ function LanguageBar(props:any) {
 					languagesAvailable.map((language:string,index:number) => (
 						<ButtonWithoutBackground
 							buttonText={language}
-							onClick={props.setLanguageChoosen}
+							onClick={setLanguageChoosen}
 							key={index}
 						/>
 					))
@@ -21,7 +28,7 @@ function LanguageBar(props:any) {
 			</div>
 			<DropdownLanguageBar
 				options={["english","japanese"]}
-				onSelect={console.log}
+				onSelect={handleSelectNewLanguage}
 			/>
     </div>
   )

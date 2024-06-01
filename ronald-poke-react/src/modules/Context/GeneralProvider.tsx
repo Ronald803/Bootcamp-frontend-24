@@ -13,6 +13,8 @@ export const GeneralProvider = ({ children }) => {
 	const [attemptsGame, setAttemptsGame] = useState(0)
 	const [languagesAvailable, setLanguagesAvailable] = useState(["en","ja"])
 	const [allLanguages, setAllLanguages] = useState(['fr','de','es','it','zh-Hans','ko'])
+	const [languageChoosen, setLanguageChoosen] = useState('en')
+	const [pokemonsNames, setPokemonsNames] = useState([])
 	return (
     <GeneralContext.Provider
 			value={{
@@ -26,7 +28,9 @@ export const GeneralProvider = ({ children }) => {
 				isGameStarted, setIsGameStarted,
 				attemptsGame, setAttemptsGame,
 				languagesAvailable, setLanguagesAvailable,
-				allLanguages, setAllLanguages
+				allLanguages, setAllLanguages,
+				languageChoosen, setLanguageChoosen,
+				pokemonsNames, setPokemonsNames
 			}}
 		>
       { children }

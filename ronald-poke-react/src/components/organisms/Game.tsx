@@ -6,12 +6,11 @@ import { GeneralContext } from '../../modules/Context/GeneralContext'
 import PokemonImageGame from '../atoms/PokemonImageGame'
 
 function Game(props:any) {
-  const [languageChoosen, setLanguageChoosen] = useState(null)
-  const [pokemonsNames, setPokemonsNames] = useState([])
-  
   const { 
     pokemonsRandomFour,
     languagesAvailable,
+    languageChoosen,
+    pokemonsNames,setPokemonsNames
   } = useContext(GeneralContext)
 
   useEffect(()=>{
@@ -27,14 +26,12 @@ function Game(props:any) {
       })
       pokemonsNamesUpdatedLanguage.push({name,id:pokemon.id})
     })
-    console.log(pokemonsNamesUpdatedLanguage)
     setPokemonsNames(pokemonsNamesUpdatedLanguage)
   },[languageChoosen])
   return (
     <div>
       <LanguageBar 
         languagesAvailable={languagesAvailable}
-        setLanguageChoosen={setLanguageChoosen}
       />
       <PokemonImageGame/>
       <div className="game-main-container">

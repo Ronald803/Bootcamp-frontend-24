@@ -6,13 +6,34 @@ import { GeneralContext } from '../../modules/Context/GeneralContext'
 import Popup from '../molecules/Popup'
 
 function GamePage() {
-  const { setPokemonImageClass,setPokemonsRandomFour,setOneRandomNumber,pokemonChoosenGame,isGameStarted, setIsGameStarted } = useContext(GeneralContext)
+  const { 
+    setPokemonImageClass,
+    setPokemonsRandomFour,
+    setOneRandomNumber,
+    pokemonChoosenGame,
+    isGameStarted, 
+    setIsGameStarted, 
+    languageChoosen,
+    setPokemonsNames
+  } = useContext(GeneralContext)
 	const newGame = async () => {
 		setPokemonImageClass('game-imagepokemon-shadow')
     const pokemonsList = await getPokemonsList()
-    setPokemonsRandomFour(chooseFourRandom(pokemonsList));
+    const fourPokemons = chooseFourRandom(pokemonsList)
+    setPokemonsRandomFour(fourPokemons);
     setIsGameStarted(true)
     setOneRandomNumber(Math.floor(Math.random() * 4))
+    let pokemonsNamesUpdatedLanguage:Array<string> = []
+    fourPokemons.forEach(pokemon=>{
+      let name:string = "";
+      pokemon.names.forEach(pokemonName=>{
+        if(pokemonName.language.name==languageChoosen){
+          name = pokemonName.name
+        }
+      })
+      pokemonsNamesUpdatedLanguage.push({name,id:pokemon.id})
+    })
+    setPokemonsNames(pokemonsNamesUpdatedLanguage)
   }
   return (
     <div>
