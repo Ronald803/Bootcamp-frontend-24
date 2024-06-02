@@ -34,6 +34,8 @@ function GamePage() {
       pokemonsNamesUpdatedLanguage.push({name,id:pokemon.id})
     })
     setPokemonsNames(pokemonsNamesUpdatedLanguage)
+    console.log(pokemonsList);
+    
   }
   return (
     <div>

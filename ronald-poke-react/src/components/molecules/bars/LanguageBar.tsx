@@ -3,12 +3,14 @@ import '../../../styles/languageBar.css'
 import { useContext } from "react"
 import { GeneralContext } from "../../../modules/Context/GeneralContext"
 import DropdownLanguageBar from "../../atoms/dropdowns/DropdownLanguageBar"
+import ButtonImage from "../../atoms/buttons/ButtonImage"
 function LanguageBar() {
 	const {languagesAvailable,setLanguageChoosen,setLanguagesAvailable,setAllLanguages,allLanguages} = useContext(GeneralContext)
-	const handleSelectNewLanguage = (newLanguage:string) => {
+	const handleSelectNewLanguage = (newLanguage) => {
+		console.log(newLanguage)
 		setLanguagesAvailable([...languagesAvailable,newLanguage])
 		const auxLanguages = allLanguages
-		const index = auxLanguages.findIndex(language=>language==newLanguage)
+		const index = auxLanguages.findIndex(language=>language.name==newLanguage.name)
 		auxLanguages.splice(index,1)
 		setAllLanguages(auxLanguages)
 	}
@@ -17,19 +19,23 @@ function LanguageBar() {
       <div className="navlanguage-text">Select a Language</div>
 			<div className="navlanguage-buttons">
 				{
-					languagesAvailable.map((language:string,index:number) => (
-						<ButtonWithoutBackground
-							buttonText={language}
+					languagesAvailable.map((language,index:number) => (
+						// <ButtonWithoutBackground
+						// 	buttonText={language.name}
+						// 	onClick={setLanguageChoosen}
+						// 	key={index}
+						// />
+						<ButtonImage
+							name={language.name}
+							imageUrl={language.flagImg}
 							onClick={setLanguageChoosen}
-							key={index}
 						/>
 					))
 				}
 			</div>
-			<DropdownLanguageBar
-				options={["english","japanese"]}
-				onSelect={handleSelectNewLanguage}
-			/>
+			<div className="navlanguage-dropdown">
+				<DropdownLanguageBar onSelect={handleSelectNewLanguage}/>
+			</div>
     </div>
   )
 }

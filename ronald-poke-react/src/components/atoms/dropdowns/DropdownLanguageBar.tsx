@@ -1,14 +1,15 @@
 import {useContext, useState} from 'react'
 import '../../../styles/dropDownLanguageBar.css'
 import { GeneralContext } from '../../../modules/Context/GeneralContext';
+import ButtonImage from '../buttons/ButtonImage';
 function DropdownLanguageBar({onSelect}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+ // const [selectedOption, setSelectedOption] = useState(null);
   const { allLanguages } = useContext(GeneralContext)
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
+   // setSelectedOption(option);
     onSelect(option);
     setIsOpen(false);
   };
@@ -20,14 +21,12 @@ function DropdownLanguageBar({onSelect}) {
       </button>
       {isOpen && (
         <div className="dropdown-menu">
-          {allLanguages.map((option,index) => (
-            <div
-              key={index}
-              className="dropdown-item"
-              onClick={() => handleOptionClick(option)}
-            >
-              {option}
-            </div>
+          {allLanguages.map((language,index) => (
+            <ButtonImage
+              name={language}
+              imageUrl={language.flagImg}
+              onClick={handleOptionClick}
+            />
           ))}
         </div>
       )}

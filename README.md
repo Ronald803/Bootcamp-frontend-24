@@ -18,3 +18,5 @@
   - ✔️ Switching names with languageButton correctly implemented
   - ✔️ Pokemon image obtained from api, and modify with classes in order to see just the siluet
   - ✔️ Score and attempts implemented
+  - ✔️ Flags images added
+  - ✔️ Add languages implemented

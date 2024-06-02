@@ -11,8 +11,8 @@ export const GeneralProvider = ({ children }) => {
 	const [oneRandomNumber, setOneRandomNumber] = useState(null)
 	const [isGameStarted, setIsGameStarted] = useState(false)
 	const [attemptsGame, setAttemptsGame] = useState(0)
-	const [languagesAvailable, setLanguagesAvailable] = useState(["en","ja"])
-	const [allLanguages, setAllLanguages] = useState(['fr','de','es','it','zh-Hans','ko'])
+	const [languagesAvailable, setLanguagesAvailable] = useState(languagesAvailableDetails)
+	const [allLanguages, setAllLanguages] = useState(allLanguagesDetails)
 	const [languageChoosen, setLanguageChoosen] = useState('en')
 	const [pokemonsNames, setPokemonsNames] = useState([])
 	return (
@@ -37,3 +37,40 @@ export const GeneralProvider = ({ children }) => {
     </GeneralContext.Provider>
   )
 }
+
+const languagesAvailableDetails = [
+	{	
+		name: 'en',
+		flagImg: '/flags/en.jpg'
+	},
+	{
+		name: 'ja',
+		flagImg: '/flags/ja.webp'
+	}]
+const allLanguagesDetails = 
+[
+	{
+		name:'fr',
+		flagImg:"/flags/fr.webp"
+	},
+	{
+		name:'de',
+		flagImg:"/flags/de.png"
+	},
+	{
+		name:'es',
+		flagImg:"/flags/es.webp"
+	},
+	{
+		name:'it',
+		flagImg:"/flags/it.png"
+	},
+	{
+		name:'zh-Hans',
+		flagImg:"/flags/zh-Hans.png"
+	},
+	{
+		name:'ko',
+		flagImg:"/flags/ko.webp"
+	},
+]
