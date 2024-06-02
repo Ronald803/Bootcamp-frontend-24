@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {getPokemonsList} from '../../modules/pokeApiRequests'
 import Game from '../organisms/Game'
 import GameScore from '../organisms/GameScore'
@@ -14,10 +14,15 @@ function GamePage() {
     isGameStarted, 
     setIsGameStarted, 
     languageChoosen,
-    setPokemonsNames
+    setPokemonsNames,
+    attemptsGame,
+    gameScore,
+    setAttemptsGame,
+    setGameScore
   } = useContext(GeneralContext)
+  const [popupMessage, setPopupMessage] = useState("Would you like to start a new game?")
 	const newGame = async () => {
-		setPokemonImageClass('game-imagepokemon-shadow')
+    setPokemonImageClass('game-imagepokemon-shadow')
     const pokemonsList = await getPokemonsList()
     const fourPokemons = chooseFourRandom(pokemonsList)
     setPokemonsRandomFour(fourPokemons);
@@ -34,8 +39,10 @@ function GamePage() {
       pokemonsNamesUpdatedLanguage.push({name,id:pokemon.id})
     })
     setPokemonsNames(pokemonsNamesUpdatedLanguage)
-    console.log(pokemonsList);
-    
+    if(attemptsGame==3){
+      setAttemptsGame(0)
+      setGameScore(0)
+    }
   }
   return (
     <div>
@@ -43,9 +50,9 @@ function GamePage() {
         !isGameStarted 
         &&
         <Popup
-          message={"Would you like to start a new game?"}
+          message={attemptsGame == 3 ? `Points: ${gameScore}.`: "Would you like to start a new game?"}
           onAccept={newGame}
-          buttonText={"Start!"}
+          buttonText={attemptsGame != 3 ? "Start!": "New Round"}
         />
       }
 			<Game/>

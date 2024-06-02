@@ -8,11 +8,11 @@ function GameScore() {
     <div className="game-score-container">
         <div className="game-score">
           <div>Points:</div> 
-          <div>{gameScore} / 4</div>
+          <div>{gameScore} / 3</div>
         </div>
         <div className="game-score">
           <div>Attempts:</div>
-          <div>{attemptsGame} / 4</div>
+          <div>{attemptsGame} / 3</div>
         </div>
     </div>
   )

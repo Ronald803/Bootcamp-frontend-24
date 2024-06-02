@@ -20,3 +20,4 @@
   - ✔️ Score and attempts implemented
   - ✔️ Flags images added
   - ✔️ Add languages implemented
+  - ✔️ Score message after 3 attempts implemented
