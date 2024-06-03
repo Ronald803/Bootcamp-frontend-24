@@ -6,6 +6,8 @@ export async function getPokemonsList(purpose:string) {
     url = urlGame
   } else if(purpose == "pokedex"){
     url = urlPokedex
+  } else {
+    url = urlPokedex
   }
   console.log("request to backend")
   let pokemonsList = [];
