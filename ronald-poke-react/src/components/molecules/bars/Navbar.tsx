@@ -8,18 +8,22 @@ function Navbar() {
 				Pokedex
 			</div>
 			<div className="navbar-buttons">
-				<ButtonWithoutBackground
-					buttonText="Game"
-					onClick={console.log}
-				/>
+				<a href="/game">
+					<ButtonWithoutBackground
+						buttonText="Game"
+						onClick={console.log}
+					/>
+				</a>
 				<ButtonWithoutBackground
 					buttonText="Langs"
 					onClick={console.log}
 				/>
-				<ButtonWithoutBackground
-					buttonText="Pokedex"
-					onClick={console.log}
-				/>
+				<a href="/Pokedex">
+					<ButtonWithoutBackground
+						buttonText="Pokedex"
+						onClick={console.log}
+					/>
+				</a>
 			</div>
     </div>
   )

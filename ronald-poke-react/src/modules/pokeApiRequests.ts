@@ -1,5 +1,12 @@
-const url = "https://pokeapi.co/api/v2/pokemon-species/";
-export async function getPokemonsList() {
+const urlGame = "https://pokeapi.co/api/v2/pokemon-species/";
+const urlPokedex = "https://pokeapi.co/api/v2/pokemon?limit=150"
+export async function getPokemonsList(purpose:string) {
+  let url:string
+  if(purpose == "game"){
+    url = urlGame
+  } else if(purpose == "pokedex"){
+    url = urlPokedex
+  }
   console.log("request to backend")
   let pokemonsList = [];
   let pokemonsDetailsList = [];

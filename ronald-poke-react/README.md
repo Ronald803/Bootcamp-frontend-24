@@ -23,3 +23,4 @@
   - ✔️ Score message after 3 attempts implemented
 - Challenge 2 - Pokedex
   - ✔️ ReactRouter implement to navigate between GamePage and PokedexPage
+  - ✔️ Get 150 pokemons from api

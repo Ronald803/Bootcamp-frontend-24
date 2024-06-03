@@ -23,7 +23,7 @@ function GamePage() {
   const [popupMessage, setPopupMessage] = useState("Would you like to start a new game?")
 	const newGame = async () => {
     setPokemonImageClass('game-imagepokemon-shadow')
-    const pokemonsList = await getPokemonsList()
+    const pokemonsList = await getPokemonsList("game")
     const fourPokemons = chooseFourRandom(pokemonsList)
     setPokemonsRandomFour(fourPokemons);
     setIsGameStarted(true)
