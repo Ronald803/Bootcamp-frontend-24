@@ -6,7 +6,7 @@ function PokedexList() {
   return (
     <div>
       {partialListPokedex?.map((pokemon,key)=>(
-        <p>{pokemon.name}</p>
+        <p>{pokemon.id} {pokemon.name}</p>
       ))}
     </div>
   )
