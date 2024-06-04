@@ -2,9 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  // entry: {
+  //   app: './src/index.js',
+  // },
   entry: {
-    app: './src/index.js',
-  },    
+    index: './src/index.js',
+    another: './src/another-module.js',
+  },
   devServer: {
     static: {
 	    directory: path.join(__dirname, 'dist'),

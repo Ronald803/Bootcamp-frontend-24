@@ -128,3 +128,28 @@ module.exports = merge(common, {
   devtool: 'source-map'
 });
 ```
+
+# Code Splitting
+- Code splitting is one of the most compelling features of webpack
+- This feature allows you to split your code into various bundles which can then be loaded on demand or in parallel.
+- Benefits:
+  - Faster loading: Only the code necessary for the initial view of the application is loaded.
+  - Better performance: By reducing the initial file size, download time is shorter
+  - Network optimization: Users do not have to download all application code in a single request
+- There are three general approaches to code splitting available:
+
+  - Entry Points: Manually split code using entry configuration.
+  - Prevent Duplication: Use Entry dependencies or SplitChunksPlugin to dedupe and split chunks.
+  - Dynamic Imports: Split code via inline function calls within modules.
+
+## Entry Points
+- The easiest and most intuitive way to split code
+
+```js
+  entry: {
+    index: './src/index.js',
+    another: './src/another-module.js',
+  },
+```
+
+![Screenshot of visual studio](screenshot-more-bundles.png)
