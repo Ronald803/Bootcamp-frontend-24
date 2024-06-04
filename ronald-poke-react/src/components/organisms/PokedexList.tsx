@@ -1,10 +1,13 @@
-import {useState} from 'react'
+import {useContext, useState} from 'react'
+import { GeneralContext } from '../../modules/Context/GeneralContext'
 
 function PokedexList() {
-  const [partOfList, setPartOfList] = useState(0)
-	return (
+  const {partialListPokedex} = useContext(GeneralContext)
+  return (
     <div>
-      PokedexList
+      {partialListPokedex?.map((pokemon,key)=>(
+        <p>{pokemon.name}</p>
+      ))}
     </div>
   )
 }

@@ -15,6 +15,9 @@ export const GeneralProvider = ({ children }) => {
 	const [allLanguages, setAllLanguages] = useState(allLanguagesDetails)
 	const [languageChoosen, setLanguageChoosen] = useState('en')
 	const [pokemonsNames, setPokemonsNames] = useState([])
+	const [partialListPokedex, setPartialListPokedex] = useState([])
+	const [limitPagePokedex, setLimitPagePokedex] = useState(15)
+  	const [numberPagePokedex, setNumberPagePokedex] = useState(1)
 	return (
     <GeneralContext.Provider
 			value={{
@@ -30,7 +33,10 @@ export const GeneralProvider = ({ children }) => {
 				languagesAvailable, setLanguagesAvailable,
 				allLanguages, setAllLanguages,
 				languageChoosen, setLanguageChoosen,
-				pokemonsNames, setPokemonsNames
+				pokemonsNames, setPokemonsNames,
+				partialListPokedex, setPartialListPokedex,
+				limitPagePokedex, setLimitPagePokedex,
+				numberPagePokedex, setNumberPagePokedex
 			}}
 		>
       { children }
