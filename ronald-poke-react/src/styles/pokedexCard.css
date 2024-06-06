@@ -1,0 +1,53 @@
+.pokedex-card {
+    width: 160px;
+    height: 200px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: red;
+    border-bottom: 2px solid #000;
+		color: white;
+  }
+  
+  .card-id {
+    font-size: 0.8rem;
+  }
+  
+  .card-name {
+    font-size: 1rem;
+    font-weight: bold;
+		text-transform: uppercase;
+  }
+  
+  .card-image {
+    text-align: center;
+  }
+  
+  .card-image img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .card-types {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 2px solid #000;
+  }
+  
+  .card-type {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+  }
