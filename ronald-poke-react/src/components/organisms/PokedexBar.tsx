@@ -2,7 +2,8 @@ import { useContext, useState, useEffect } from 'react'
 import { GeneralContext } from '../../modules/Context/GeneralContext'
 import ButtonRed from '../atoms/buttons/ButtonRed'
 import InputButton from '../molecules/inputs/InputButton'
-
+import '../../styles/pokedexBar.css'
+import PokemonSearch from './PokemonSearch'
 function PokedexBar(props) {
   const { setPartialListPokedex,limitPagePokedex, setLimitPagePokedex, numberPagePokedex, setNumberPagePokedex } = useContext(GeneralContext)
 	useEffect(()=>{
@@ -27,10 +28,18 @@ function PokedexBar(props) {
     setLimitPagePokedex(a)
   }
   return (
-    <div className=''>
-      <ButtonRed buttonText={"Prev Page"} onClick={handleChangePage} idButton={-1}/>
-      <ButtonRed buttonText={"Next Page"} onClick={handleChangePage} idButton={1}/>
-      <InputButton onClick={handleSetLimit} onClickTwo={setNumberPagePokedex}/>
+    <div className='pokedex-bar'>
+      <InputButton 
+        onClick={handleSetLimit} 
+        onClickTwo={setNumberPagePokedex}
+        type={"number"}
+        buttonText={"SetLimit"}
+      />
+      <div>
+        <ButtonRed buttonText={"Prev Page"} onClick={handleChangePage} idButton={-1}/>
+        <ButtonRed buttonText={"Next Page"} onClick={handleChangePage} idButton={1}/>
+      </div>
+      <PokemonSearch/>
     </div>
   )
 }

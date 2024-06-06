@@ -9,8 +9,8 @@ function InputButton(props) {
 	}
   return (
     <div>
-      <input type="number" ref={inputRef}/>
-			<ButtonRed buttonText={"Set limit"} onClick={handleClick} idButton={null}/>
+      <input type={props.type} ref={inputRef}/>
+			<ButtonRed buttonText={props.buttonText} onClick={handleClick} idButton={null}/>
     </div>
   )
 }

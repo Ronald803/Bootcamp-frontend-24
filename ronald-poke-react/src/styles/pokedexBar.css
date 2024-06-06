@@ -1,0 +1,7 @@
+.pokedex-bar {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  gap: 30px; 
+  padding: 20px; /* Opcional, para añadir un poco de espacio alrededor */
+}
