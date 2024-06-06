@@ -21,9 +21,7 @@ function PokedexBar(props) {
       if((numberPagePokedex==1 && a==-1)||(numberPagePokedex==Math.round(props.allPokemons.length/limitPagePokedex) && a==1)){
         return
       }
-      setNumberPagePokedex(numberPagePokedex+a)
-      console.log(numberPagePokedex);      
-    
+      setNumberPagePokedex(numberPagePokedex+a)    
   }
   const handleSetLimit = (a) => {
     setLimitPagePokedex(a)
