@@ -39,7 +39,7 @@ function PokedexBar(props) {
         <ButtonRed buttonText={"Prev Page"} onClick={handleChangePage} idButton={-1}/>
         <ButtonRed buttonText={"Next Page"} onClick={handleChangePage} idButton={1}/>
       </div>
-      <PokemonSearch/>
+      <PokemonSearch allPokemons={props.allPokemons}/>
     </div>
   )
 }
